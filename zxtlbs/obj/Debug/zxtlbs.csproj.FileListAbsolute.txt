@@ -1,0 +1,16 @@
+D:\wukaiproject\zxtlbs\zxtlbs\bin\zxtlbs.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\zxtlbs.pdb
+D:\wukaiproject\zxtlbs\zxtlbs\bin\Castle.DynamicProxy.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.Common.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.Common.Logging.Log4Net.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.DataAccess.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.DataMapper.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\log4net.dll
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.Common.Logging.Log4Net.xml
+D:\wukaiproject\zxtlbs\zxtlbs\bin\log4net.xml
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.Common.xml
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.DataMapper.xml
+D:\wukaiproject\zxtlbs\zxtlbs\bin\IBatisNet.DataAccess.xml
+D:\wukaiproject\zxtlbs\zxtlbs\obj\Debug\ResolveAssemblyReference.cache
+D:\wukaiproject\zxtlbs\zxtlbs\obj\Debug\zxtlbs.dll
+D:\wukaiproject\zxtlbs\zxtlbs\obj\Debug\zxtlbs.pdb

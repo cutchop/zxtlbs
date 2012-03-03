@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="User"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <!--Type aliases allow you to use a shorter name for long fully qualified class names.-->
+  <alias>
+    <typeAlias alias="LineItem" type="NPetshop.Domain.Billing.LineItem, NPetshop.Domain" />
+  </alias>
+
+  <statements>
+    <insert id="InsertLineItem" parameterClass="LineItem">
+      INSERT INTO [LinesItem]
+      (Order_Id, LineItem_LineNum, Item_Id, LineItem_Quantity, LineItem_UnitPrice)
+      VALUES
+      (#Order.Id#, #LineNumber#, #Item.Id#, #Quantity#, #Item.ListPrice#)
+    </insert>
+  </statements>
+</sqlMap>
