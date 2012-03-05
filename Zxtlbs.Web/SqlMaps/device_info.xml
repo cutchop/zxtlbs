@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="User"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <!--Type aliases allow you to use a shorter name for long fully qualified class names.-->
+  <alias>
+    <typeAlias alias="DeviceInfo" type="Zxtlbs.Model.DeviceInfo, Zxtlbs.Model" />
+  </alias>
+
+  <statements>
+    <insert id="InsertDeviceInfo" parameterClass="DeviceInfo">
+		insert into device_info
+		(rw_id, device_id, device_name, factory_code, device_sim, device_type, ico_num, belong_groupid, com_mode, install_date, initial_course, engine_number, frame_number, linkphone, plate_color, vehicle_color, is_oil_sensor, is_camera, is_temp_sensor, is_is_relay, device_remark)
+		values
+		(#rw_id#, #device_id#, #device_name#, #factory_code#, #device_sim#, #device_type#, #ico_num#, #belong_groupid#, #com_mode#, #install_date#, #initial_course#, #engine_number#, #frame_number#, #linkphone#, #plate_color#, #vehicle_color#, #is_oil_sensor#, #is_camera#, #is_temp_sensor#, #is_is_relay#, #device_remark#);
+	</insert>
+  </statements>
+</sqlMap>

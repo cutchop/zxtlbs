@@ -1,0 +1,5 @@
+D:\Test\zxtlbs\Zxtlbs.Model\bin\Debug\Zxtlbs.Model.dll
+D:\Test\zxtlbs\Zxtlbs.Model\bin\Debug\Zxtlbs.Model.pdb
+D:\Test\zxtlbs\Zxtlbs.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\Test\zxtlbs\Zxtlbs.Model\obj\Debug\Zxtlbs.Model.dll
+D:\Test\zxtlbs\Zxtlbs.Model\obj\Debug\Zxtlbs.Model.pdb
