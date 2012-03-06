@@ -1,0 +1,207 @@
+﻿<div class="z-wrap"> 
+  <!--职位管理 职位列表 开始-->
+  <div id="z-zwgl-list-01" class="z-wrap-height">
+    <div class="z-search">
+      <div class="z-search-condition">
+        <div class="z-search-term-three">
+          <table class="z-search-box">
+            <thead>
+              <tr>
+                <td class="z-search-name">职位名称</td>
+                <td><span class="z-basic-input">
+                  <input type="text" class="z-basic-text" />
+                  </span></td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="showDiv('#z-zwgl-result');hiddenDiv('#z-zwgl-list')"><span>查询</span></a> <a href="#" class="z-search-reset">重置</a> </div>
+      </div>
+    </div>
+    <div class="z-line"></div>
+    <div id="z-zwgl-list">
+        <div class="z-toolbar z-list-rowadd-top">
+          <div class="z-group">
+            <div class="z-btn"><a href="#" class="z-btn-oper" onclick="zListRowadd(this)"><span>新增</span></a></div>
+            <div class="z-btn"><a href="#" class="z-btn-oper"><span>修改</span></a></div>
+            <div class="z-btn" onclick="popupBody('#z-zwgl-del')"><a href="#" class="z-btn-oper"><span>删除</span></a></div>
+          </div>
+          <div class="z-group">
+            <div class="z-btn"><a href="#" class="z-btn-oper"><span>上移</span></a></div>
+            <div class="z-btn"><a href="#" class="z-btn-oper"><span>下移</span></a></div>
+          </div>
+        </div>
+        <div class="z-list-rowadd">
+          <table class="z-list-table">
+            <thead>
+              <tr>
+                <th><input class="z-checkboxStyle" type="checkbox" /></th>
+                <th>职位名称</th>
+                <th width="50%">职位说明</th>
+                <th width="20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="z-list-rowadd-default" style="display:none;">
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td><span class="z-basic-input"><input type="text" class="z-basic-text" /></span></td>
+                <td><span class="z-basic-input"><input type="text" class="z-basic-text w300" /></span></td>
+                <td class="z-list-rowadd-btn-wrap">
+                	<div class="z-btn"><a href="#" onclick="hiddenDiv('.z-list-rowadd-default')" class="z-btn-blue"><span>确定</span></a></div> 
+                    <a href="#" onclick="hiddenDiv('.z-list-rowadd-default')">取消</a> 
+                </td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>总经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>总经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>普通员工</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>总经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>普通员工</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>总经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>普通员工</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td>经理</td>
+                <td>公司总经理，主持公司日常工作，管理各部门日常事务</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div id="z-zwgl-result" style="display:none;">
+    	<div class="z-toolbar">
+          <div class="z-group">
+            <div class="z-btn"><a href="#" class="z-btn-oper"><span>修改</span></a></div>
+            <div class="z-btn" onclick="popupBody('#z-zwgl-del')"><a href="#" class="z-btn-oper"><span>删除</span></a></div>
+          </div>
+        </div>
+        <div class="z-line2"></div>
+        <div class="z-search-record" id="z-search-zwgl-result-01">找到相关结果<span class="z-font-red">2</span>条</div>
+        <div class="z-list">
+          <table class="z-list-table">
+            <thead>
+              <tr>
+                <th><input class="z-checkboxStyle" type="checkbox" /></th>
+                <th>职位名称</th>
+                <th width="45%">职位说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td><a href="#">总经理</a></td>
+                <td>公司总经理，主持公司日常工作，管理各部...</td>
+              </tr>
+              <tr>
+                <td><input class="z-checkboxStyle" type="checkbox" /></td>
+                <td><a href="#">经理</a></td>
+                <td>部门经理，主持部门日常工作，管理所在部门...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  <!--职位管理 职位列表 结束--> 
+  
+  
+  
+</div>
+
+<!--弹出层开始--> 
+
+<!--删除开始-->
+<div id="z-zwgl-del" style="display:none;">
+  <div class="z-window">
+    <div class="z-window-tl">
+      <div class="z-window-tr">
+        <div class="z-window-tc">
+          <div class="z-window-tools"><a href="#" onClick="closePopup(this)" class="z-close"></a></div>
+          <h2>删除</h2>
+        </div>
+      </div>
+    </div>
+    <div class="z-window-ml">
+      <div class="z-window-mr">
+        <div class="z-window-mc"> 
+          <!--弹出内容开始-->
+          <div class="z-window-main">
+            <div class="z-window-tips">
+              <div class="z-tips z-tips-warn">
+                <p><strong>您确定删除吗？</strong></p>
+                <p>记录删除后将不可恢复，是否继续执行此操作？</p>
+              </div>
+            </div>
+            <div class="z-window-bbar">
+              <div class="z-btn" onClick="closePopup(this)"><a href="#" class="z-btn-blue"><span>确定</span></a></div>
+              <div class="z-btn" onClick="closePopup(this)"><a href="#" class="z-btn-gray"><span>取消</span></a></div>
+            </div>
+          </div>
+          <!--弹出内容结束--> 
+        </div>
+      </div>
+    </div>
+    <div class="z-window-bl">
+      <div class="z-window-br">
+        <div class="z-window-bc"> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--删除结束--> 
+
+<!--弹出层结束--> 
+

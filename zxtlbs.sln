@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxtlbs.Model", "Zxtlbs.Model\Zxtlbs.Model.csproj", "{BE326FED-0E9E-4949-B2C0-4C85A5E403C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zxtlbs.Web", "Zxtlbs.Web\Zxtlbs.Web.csproj", "{425101A4-9429-41F2-8B6A-F1D010B085F8}"

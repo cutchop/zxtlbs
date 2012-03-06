@@ -20,19 +20,19 @@
     <div id="header">
         <div id="headerTop" class="lock">
             <div id="headerMain">
-                <h1 class="logo"><a href="#">企业工作站</a></h1>
+                <h1 class="logo"><a href="#">LBS</a></h1>
                 <ul class="nav">
-                    <li id="nav_map"><div class="wrapIcon" onclick="ajaxloading('portal','map/map.html','实时监控')"><em class="navIcon_map">&nbsp;</em><span>实时监控</span></div></li>
-                    <li id="nav_history"><div class="wrapIcon" onclick="ajaxloading('xtbg','OA/html/xtbg.html','协同办公')"><em class="navIcon_history">&nbsp;</em><span>历史轨迹</span></div></li>
-                    <li id="nav_report"><div class="wrapIcon" onclick="ajaxloading('rlzy','HR/html/rlzy.html','人力资源')"><em class="navIcon_report">&nbsp;</em><span>报表管理</span></div></li>
-					<li id="nav_device"><div class="wrapIcon" onclick="ajaxloading('yhzx','YHZX/yhzx.html','用户中心')"><em class="navIcon_device">&nbsp;</em><span>设备管理</span></div></li>
-                    <li id="nav_setting"><div class="wrapIcon"><em class="navIcon_setting">&nbsp;</em><span>系统设置</span></div></li>
-                    <li id="nav_lbzm"><div class="wrapIcon wrapIcon-l" onclick="ajaxloading('lbzm','OA/html/lbzm.html','老板桌面')"><em class="navIcon_gljsc">&nbsp;</em><span>管理驾驶舱</span></div></li>
+                    <li id="nav_map"><div class="wrapIcon" onclick="ajaxloading('map','map/map.html','实时监控')"><em class="navIcon_map">&nbsp;</em><span>实时监控</span></div></li>
+                    <li id="nav_history"><div class="wrapIcon" onclick="ajaxloading('history','map/history.html','历史轨迹')"><em class="navIcon_history">&nbsp;</em><span>历史轨迹</span></div></li>
+                    <li id="nav_report"><div class="wrapIcon" onclick="ajaxloading('report','report/index.html','报表管理')"><em class="navIcon_report">&nbsp;</em><span>报表管理</span></div></li>
+					<li id="nav_device"><div class="wrapIcon" onclick="ajaxloading('device','device/device.html','设备管理')"><em class="navIcon_device">&nbsp;</em><span>设备管理</span></div></li>
+                    <li id="nav_setting"><div class="wrapIcon" onclick="ajaxloading('setting','setting/setting.html','系统设置')"><em class="navIcon_setting">&nbsp;</em><span>系统设置</span></div></li>
+                    <li id="nav_other"><div class="wrapIcon"><em class="navIcon_other">&nbsp;</em><span>其他系统</span></div></li>
                 </ul>
                 
                 <div class="area">
                     <div class="loginBox">
-                        <div class="loginPic stopPropagation" onclick="toggle('#addMore3');"><img src="frame/images/img.jpg"></div>
+                        <div class="loginPic stopPropagation" onclick="toggle('#addMore3');"><img src="frame/images/img.jpg" /></div>
                         <div class="loginText">张微</div>
                     </div>
                     <ul class="areaTools stopPropagation">
@@ -118,12 +118,12 @@
 </div>
 <div id="lbzm-email" class="z-window x-window-fixed" style="display:none;"> 
     <div class="z-window-tl"><div class="z-window-tr"><div class="z-window-tc"> 
-        <div class="z-window-tools"><a href="#" onClick="closePopup(this)" class="z-close"></a></div> 
+        <div class="z-window-tools"><a href="#" onclick="closePopup(this)" class="z-close"></a></div> 
         <h2>邮件</h2> 
     </div></div></div> 
     <div class="z-window-ml"><div class="z-window-mr"><div class="z-window-mc">
         <!--弹出内容开始--> 
-        <img src="frame/images/yj.jpg" />
+        <img src="frame/images/yj.jpg" alt="" />
         <!--弹出内容结束-->  
     </div></div></div>
     <div class="z-window-bl"><div class="z-window-br"><div class="z-window-bc"></div></div></div> 
@@ -138,8 +138,8 @@
         <div class="z-window-content">                           
 <div style="padding:0 10px; width:300px; height:200px; overflow:hidden;"> 
   <div style="margin:-100px 0 0 -200px;" class="pr">
-  <img src="OA/images/img/up.jpg">
-  <input type="file" class="alpha0" style="height: 42px; left: 96px; position: absolute; top: 144px; width: 150px;">
+  <img src="common/images/up.jpg" />
+  <input type="file" class="alpha0" style="height: 42px; left: 96px; position: absolute; top: 144px; width: 150px;" />
   </div>
 </div>
         </div>
