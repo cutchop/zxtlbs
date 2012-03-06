@@ -1,0 +1,98 @@
+﻿<div class="z-wrap"> 
+  <!--实时监控 开始-->
+  <div id="z-zzgl-list-01" class="z-wrap-height z-sub-payout-bg">
+    <div class="z-sub-payout z-sub-main-bg">
+      <div class="z-sub-payout-l">
+        <div class="z-sub-tools">
+          <div class="z-row-oper"> <a href="#" class="z-row-add" onclick="popupBody('#z-zzgl-add')" title="新增"></a><a href="#" class="z-row-edit" onclick="popupBody('#z-zzgl-edit')" title="修改"></a><a href="#" class="z-row-del" onclick="popupBody('#z-zzgl-del')" title="删除"></a><a href="#" class="z-row-up" title="上移"></a><a href="#" class="z-row-down" title="下移"></a> </div>
+        </div>
+        <div class="z-sub-choose">
+          <div class="z-tree"><span class="z-tree-bg">&nbsp;</span>
+            <ul class="z-tree-root">
+              <li class="z-tree-li">
+                <h3><a class="z-tree-active" href="#">测试集团</a></h3>
+                <ul class="z-tree-ul" style="display:block;">
+                  <li class="z-tree-li z-tree-leaf"><a id="d_13866668881" href="#" onclick="javascript:madd(this,30.655,114.327);">鄂A12345 <span class="status_xs">[行驶]</span></a></li>
+                  <li class="z-tree-li z-tree-leaf"><a id="d_13866668882" href="#" onclick="javascript:madd(this,30.625,114.317);">鄂A12346 <span class="status_xh">[熄火]</span></a></li>
+                  <li class="z-tree-li">
+                    <h3><a href="#">测试单位</a></h3>
+                    <ul class="z-tree-ul" style="display:none;">
+                      <li class="z-tree-li z-tree-leaf"><a href="#">测试车辆03</a></li>
+                      <li class="z-tree-li z-tree-leaf"><a href="#">测试车辆04</a></li>
+                      <li class="z-tree-li">
+                        <h3><a href="#">测试组</a></h3>
+                        <ul class="z-tree-ul" style="display:none;">
+                          <li class="z-tree-li z-tree-leaf"><a href="#">测试车辆05</a></li>
+                          <li class="z-tree-li z-tree-leaf"><a href="#">测试车辆06</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="z-tree-li">
+                <h3><a href="#">一大把</a></h3>
+                <ul class="z-tree-ul" style="display:none;">
+                  <li class="z-tree-li z-tree-leaf"><a href="#">销售部</a></li>
+                  <li class="z-tree-li z-tree-leaf"><a href="#">市场部</a></li>
+                  <li class="z-tree-li z-tree-leaf"><a href="#">产品部</a></li>
+                </ul>
+              </li>
+              <li class="z-tree-li">
+                <h3><a href="#">一大把</a></h3>
+                <ul class="z-tree-ul" style="display:none;">
+                  <li class="z-tree-li z-tree-leaf"><a href="#">行政部</a></li>
+                  <li class="z-tree-li z-tree-leaf"><a href="#">培训部</a></li>
+                  <li class="z-tree-li z-tree-leaf"><a href="#">市场部</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="height:100%;margin-left:0px;" class="z-sub-payout-r z-wrap-pm-bg z-sub-payout-r-bg"> 
+        <!--地图开始-->
+            <div id="map_canvas" style="width:100%;height:100%;"></div>
+        <!--地图结束-->         
+      </div>
+    </div>
+  </div>
+  <!--实时监控 结束--> 
+</div>
+<script type="text/javascript">
+	var myOptions = {
+		zoom: 10,
+		center: new google.maps.LatLng(30.556, 114.327),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+
+	function madd(obj,lat,lng) {
+	    var id = obj.id.substring(2);
+	    var name = obj.innerText.split('[')[0];
+	    var sim = "正在读取";
+	    var status = "正在读取";
+	    var latlng = new google.maps.LatLng(lat, lng);
+	    var marker = new google.maps.Marker({
+	        position: latlng,
+	        map: map,
+	        title: name
+	    });
+	    var infowindow = new google.maps.InfoWindow({
+	        content: '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
+                    + name
+                    + '</div><div>设备号码:'
+                    + id
+                    + '</div><div>SIM卡号:'
+                    + sim
+                    + '</div><div>设备状态:'
+                    + status
+                    + '</div></div>'
+	    });
+	    google.maps.event.addListener(marker, 'click', function() {
+	        infowindow.open(marker.get('map'), marker);
+	    });
+	    map.setCenter(latlng);
+	    infowindow.open(marker.get('map'), marker);
+	}
+</script>
