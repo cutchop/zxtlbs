@@ -9,6 +9,7 @@
 <link href="common/common.css" rel="stylesheet" type="text/css" />
 <link href="frame/frame.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="frame/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="frame/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="common/base.js"></script>
 <script type="text/javascript" src="common/common.js"></script>
 <script type="text/javascript" src="frame/frame.js"></script>
@@ -76,8 +77,8 @@
                 <div class="popTip-mc">
                     <div class="userbox">
                         <div class="userbox-info-wrap">
-                        <div class="userbox-img"><img src="frame/images/img.gif" /></div>
-                        <h3 class="userbox-name">张微</h3>
+                        <div class="userbox-img"><img alt="" src="frame/images/img.gif" /></div>
+                        <h3 class="userbox-name">伍凯</h3>
                         <p class="userbox-info">中企动力 > 数字管理部</p>
                         </div>
 <table class="tableStyle tableStyleNoBorder cb" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -113,8 +114,8 @@
             </div>
         </div>
     </div>
-    <div id="imDiv" class="sq-popDiv"><img onclick="popupBody('#imBOX');" src="frame/images/imIMG.png" /></div>
-    <div id="fullBG"><table><tr><td><img src="frame/images/bg.jpg" /></td></tr></table></div>
+    <div id="imDiv" class="sq-popDiv"><img alt="" onclick="popupBody('#imBOX');" src="frame/images/imIMG.png" /></div>
+    <div id="fullBG"><table><tr><td><img alt="" src="frame/images/bg.jpg" /></td></tr></table></div>
 </div>
 <div id="lbzm-email" class="z-window x-window-fixed" style="display:none;"> 
     <div class="z-window-tl"><div class="z-window-tr"><div class="z-window-tc"> 
@@ -130,7 +131,7 @@
 </div>
 <div id="userpop_grxx_xg" class="z-window x-window-fixed" style="display:none;"> 
     <div class="z-window-tl"><div class="z-window-tr"><div class="z-window-tc"> 
-        <div class="z-window-tools"><a href="#" onClick="closePopup(this)" class="z-close"></a></div> 
+        <div class="z-window-tools"><a href="#" onclick="closePopup(this)" class="z-close"></a></div> 
         <h2>上传头像</h2> 
     </div></div></div> 
     <div class="z-window-ml"><div class="z-window-mr"><div class="z-window-mc">
@@ -145,8 +146,8 @@
         </div>
                 
         <div class="z-window-bbar"> 
-            <div class="z-btn"><a href="#" onClick="closePopup(this)" class="z-btn-blue"><span>确定</span></a></div> 
-            <div class="z-btn"><a href="#" onClick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-blue"><span>确定</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
         </div>         
         <!--弹出内容结束-->  
     </div></div></div>
@@ -154,7 +155,7 @@
 </div>
 <div id="userpop_grxx" class="z-window x-window-fixed" style="display:none;"> 
     <div class="z-window-tl"><div class="z-window-tr"><div class="z-window-tc"> 
-        <div class="z-window-tools"><a href="#" onClick="closePopup(this)" class="z-close"></a></div> 
+        <div class="z-window-tools"><a href="#" onclick="closePopup(this)" class="z-close"></a></div> 
         <h2>个人信息</h2> 
     </div></div></div> 
     <div class="z-window-ml"><div class="z-window-mr"><div class="z-window-mc">
@@ -162,7 +163,7 @@
         <div class="z-window-content">
         <div class="clearfl">
         <div class="fl">
-            <img src="frame/images/img.gif"><br />
+            <img alt="" src="frame/images/img.gif" /><br />
             <a href="#" onclick="popupBody('#userpop_grxx_xg');">修改显示图片</a>
         </div>
         <div class="fl">
@@ -208,8 +209,8 @@
         </div>
         </div>
         <div class="z-window-bbar"> 
-            <div class="z-btn"><a href="#" onClick="closePopup(this)" class="z-btn-blue"><span>确定</span></a></div> 
-            <div class="z-btn"><a href="#" onClick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-blue"><span>确定</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
         </div> 
         <!--弹出内容结束-->  
     </div></div></div>
@@ -217,7 +218,7 @@
 </div>
 <div id="userpop_xgmm" class="z-window x-window-fixed" style="display:none;"> 
     <div class="z-window-tl"><div class="z-window-tr"><div class="z-window-tc"> 
-        <div class="z-window-tools"><a href="#" onClick="closePopup(this)" class="z-close"></a></div> 
+        <div class="z-window-tools"><a href="#" onclick="closePopup(this)" class="z-close"></a></div> 
         <h2>修改密码</h2> 
     </div></div></div> 
     <div class="z-window-ml"><div class="z-window-mr"><div class="z-window-mc">
@@ -245,8 +246,8 @@
         </table> 
         </div>
         <div class="z-window-bbar"> 
-            <div class="z-btn"><a href="#" onClick="closePopup(this)" class="z-btn-blue"><span>确定</span></a></div> 
-            <div class="z-btn"><a href="#" onClick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-blue"><span>确定</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
         </div> 
         <!--弹出内容结束-->  
     </div></div></div>
@@ -256,7 +257,7 @@
     <div class="z-window-tl">
         <div class="z-window-tr">
             <div class="z-window-tc">
-                <div class="z-window-tools"><a href="#" onClick="closePopup(this)" class="z-close"></a></div>
+                <div class="z-window-tools"><a href="#" onclick="closePopup(this)" class="z-close"></a></div>
                 <h2>系统消息</h2>
             </div>
         </div>
@@ -738,13 +739,13 @@
         <div class="z-form-btnarea-mr">
           <div class="z-form-btnarea-mc">
             <ul>
-              <li><a href="#" class="z-icon-submit" onClick="popupBody('#z-jk-sqjk-next2');closePopup(this);">提交</a></li>
-              <li><a href="#" class="z-icon-save" onClick="initTime('暂存成功！');closePopup(this)">暂存</a></li>
+              <li><a href="#" class="z-icon-submit" onclick="popupBody('#z-jk-sqjk-next2');closePopup(this);">提交</a></li>
+              <li><a href="#" class="z-icon-save" onclick="initTime('暂存成功！');closePopup(this)">暂存</a></li>
             </ul>
             <ul class="z-form-line">
-              <li><a href="#" class="z-icon-view" onClick="popupBody('#z-jk-cklct1');closePopup(this)">查看流程</a></li>
-              <li><a href="#" class="z-icon-print" onClick="closePopup(this)">打印</a></li>
-              <li><a href="#" class="z-icon-close" onClick="closePopup(this)">关闭</a></li>
+              <li><a href="#" class="z-icon-view" onclick="popupBody('#z-jk-cklct1');closePopup(this)">查看流程</a></li>
+              <li><a href="#" class="z-icon-print" onclick="closePopup(this)">打印</a></li>
+              <li><a href="#" class="z-icon-close" onclick="closePopup(this)">关闭</a></li>
             </ul>
           </div>
         </div>
@@ -793,7 +794,7 @@
                         <tr>
                           <td class="label width1">借款人<span class="z-font-red">*</span></td>
                           <td class="width2"><div class="z-select-box-wrap z-form-person-wrap"> <span class="z-form-trigger z-form-person">
-                              <input type="text" value="朱振超" class="z-form-text">
+                              <input type="text" value="朱振超" class="z-form-text" />
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span> </div></td>
                           <td class="label width1">所属部门</td>
                           <td><span class="z-form-read">数字管理部</span></td>
@@ -802,14 +803,14 @@
                           <td class="label">信用额度(元)</td>
                           <td><span class="z-form-read">5000</span></td>
                           <td class="label">结欠金额(元)</td>
-                          <td><span class="z-form-read">500</span><a href="#" class="fr mr15" onClick="popupBody('#z-jk-ckjqmx')">查看结欠明细</a></td>
+                          <td><span class="z-form-read">500</span><a href="#" class="fr mr15" onclick="popupBody('#z-jk-ckjqmx')">查看结欠明细</a></td>
                         </tr>
                         <tr>
                           <td class="label">借款金额(元)<span class="z-font-red">*</span></td>
-                          <td><input type="text" class="z-form-text"></td>
+                          <td><input type="text" class="z-form-text" /></td>
                           <td class="label">付款方式</td>
                           <td><div class="z-select-box-wrap"> <span class="z-form-trigger z-form-select">
-                              <input type="text" value="" disabled="disabled" class="z-form-text">
+                              <input type="text" value="" disabled="disabled" class="z-form-text" />
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span>
                               <div style="display: none;" class="z-select-box z-box">
                                 <div class="z-box-t"><span>&nbsp;</span></div>
@@ -834,13 +835,13 @@
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span></div></td>
                           <td class="label">预计还款日期<span class="z-font-red">*</span></td>
                           <td><div class="z-select-box-wrap"> <span class="z-form-trigger z-form-time">
-                              <input type="text" value="" class="z-form-text">
+                              <input type="text" value="" class="z-form-text" />
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span></div></td>
                         </tr>
                         <tr>
                           <td class="label">借款类型</td>
                           <td><div class="z-select-box-wrap"> <span class="z-form-trigger z-form-select">
-                              <input type="text" value="" disabled="disabled" class="z-form-text">
+                              <input type="text" value="" disabled="disabled" class="z-form-text" />
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span>
                               <div style="display: none;" class="z-select-box z-box">
                                 <div class="z-box-t"><span>&nbsp;</span></div>
@@ -859,7 +860,7 @@
                             </div></td>
                           <td class="label">关联项目</td>
                           <td><div class="z-select-box-wrap"> <span class="z-form-trigger z-form-select">
-                              <input type="text" value="" disabled="disabled" class="z-form-text">
+                              <input type="text" value="" disabled="disabled" class="z-form-text" />
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span>
                               <div style="display: none;" class="z-select-box z-box">
                                 <div class="z-box-t"><span>&nbsp;</span></div>
@@ -877,17 +878,17 @@
                         <tr>
                           <td class="label">借款用途</td>
                           <td><div class="z-select-box-wrap"> <span class="z-form-trigger z-form-select">
-                              <input type="text" value="" disabled="disabled" class="z-form-text">
+                              <input type="text" value="" disabled="disabled" class="z-form-text" />
                               <a class="z-btn-trigger" href="javascript:void(0)">&nbsp;</a> </span>
                               <div style="display: none;" class="z-select-box z-box">
                                 <div class="z-box-t"><span>&nbsp;</span></div>
                                 <div class="z-box-c">
                                   <div class="z-box-m">
                                     <ul class="z-list">
-                                      <li><a title="出差" href="#" onClick="popupBody('#z-jk-glcc')">出差</a></li>
-                                      <li><a title="广告费" href="#" onClick="hideDiv('.z-jk-glcc')">广告费</a></li>
-                                      <li><a title="推广费" href="#" onClick="hideDiv('.z-jk-glcc')">推广费</a></li>
-                                      <li><a title="招待费" href="#" onClick="hideDiv('.z-jk-glcc')">招待费</a></li>
+                                      <li><a title="出差" href="#" onclick="popupBody('#z-jk-glcc')">出差</a></li>
+                                      <li><a title="广告费" href="#" onclick="hideDiv('.z-jk-glcc')">广告费</a></li>
+                                      <li><a title="推广费" href="#" onclick="hideDiv('.z-jk-glcc')">推广费</a></li>
+                                      <li><a title="招待费" href="#" onclick="hideDiv('.z-jk-glcc')">招待费</a></li>
                                     </ul>
                                   </div>
                                 </div>
@@ -902,7 +903,7 @@
                                 <li><a href="#" class="name">OA项目上海出差申请</a><a href="#" class="del"></a></li>
                                 <li><a href="#" class="name">HR项目上海出差申请</a><a href="#" class="del"></a></li>
                               </ul>
-                              <p class="z-glcc-oper mr15"><a href="#" class="name" onClick="popupBody('#z-jk-glcc')">关联出差</a></p>
+                              <p class="z-glcc-oper mr15"><a href="#" class="name" onclick="popupBody('#z-jk-glcc')">关联出差</a></p>
                             </div></td>
                         </tr>
                         <tr>
@@ -911,7 +912,7 @@
                         </tr>
                         <tr>
                           <td class="label">附件</td>
-                          <td colspan="3"><div class="z-affix z-affix-icon-show"> <a onClick="showDiv('#z-affix-upload')" href="javascript:void(0)" class="z-affix-icon">添加附件</a></div></td>
+                          <td colspan="3"><div class="z-affix z-affix-icon-show"> <a onclick="showDiv('#z-affix-upload')" href="javascript:void(0)" class="z-affix-icon">添加附件</a></div></td>
                         </tr>
                       </tbody>
                     </table>
@@ -932,7 +933,7 @@
 </div>
 
 <div id="imBOX" class="z-window x-window-fixed" style="display:none;"> 
-    <img src="frame/images/imBOX.png" border="0" usemap="#MapimBOX" />
+    <img alt="" src="frame/images/imBOX.png" border="0" usemap="#MapimBOX" />
     <map name="MapimBOX" id="MapimBOX">
         <area onclick="closePopup(this)" shape="rect" coords="393,3,422,30" href="#" />
     </map>
