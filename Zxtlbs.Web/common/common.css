@@ -1054,8 +1054,8 @@ p.z-font-hwxk{color:#333;}
 .z-basic-input-wrap .z-basic-to{width:10px;float:left;display:block;text-align:center; margin:1px 0 0 0;}
 
 /* 年月日 */
-.z-basic-time-part-wrap .z-select-box-wrap1{width:90px;float:left;display:block;}
-.z-basic-time-part-wrap .z-basic-text{width:60px;float:left;letter-spacing:0.2pt;}
+.z-basic-time-part-wrap .z-select-box-wrap1{width:100px;float:left;display:block;}
+.z-basic-time-part-wrap .z-basic-text{width:70px;float:left;letter-spacing:0.2pt;}
 .z-basic-time-part-wrap .z-basic-to{width:20px;float:left;display:block;text-align:center; margin:1px 0 0 0;}
 .z-basic-time-part-wrap .z-select-box1{width:100px;}
 .z-basic-time-part-wrap .z-list1{width:86px;}
@@ -1607,4 +1607,3 @@ h3.nav-h3-active a{font-weight:700;}
 
 .z-pm-qrs-all .z-pm-qrs-l{margin-right:0; width:100%;}
 .z-pm-qrs-all .z-pm-qrs-r-w{ display:none;}
-

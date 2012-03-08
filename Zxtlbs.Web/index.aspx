@@ -8,7 +8,10 @@
 <title>LBS</title>
 <link href="common/common.css" rel="stylesheet" type="text/css" />
 <link href="frame/frame.css" rel="stylesheet" type="text/css" />
+<link href="frame/jquery-ui-1.8.18.custom.css" rel="stylesheet" type="text/css" />
+<link href="frame/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="frame/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="frame/jquery-ui-1.8.18.custom.min.js"></script>
 <script type="text/javascript" src="frame/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="common/base.js"></script>
 <script type="text/javascript" src="common/common.js"></script>

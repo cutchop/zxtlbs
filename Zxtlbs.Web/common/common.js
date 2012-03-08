@@ -219,11 +219,11 @@ function zBasic(){
 	    event.stopPropagation();
 	})  
 	
-	$('.z-basic-trigger').click(function(){
-		$('.z-select-box1').css('display','none');
-	    var _obj = $(this).parents('.z-select-box-wrap1').eq(0).find('.z-select-box1');
-		_obj.css('display','block');
-	})
+//	$('.z-basic-trigger').click(function(){
+//		$('.z-select-box1').css('display','none');
+//	    var _obj = $(this).parents('.z-select-box-wrap1').eq(0).find('.z-select-box1');
+//		_obj.css('display','block');
+//	})
 	
 	/** 文本框 **/	
 	$('.z-basic-input .z-basic-text').hover(function(){
@@ -845,7 +845,13 @@ $.fn.wordLimit = function(num){
 		}					 
 	});
 }
-
-
-
-
+/**获取当前日期的字符串格式,ex:2012-03-08**/
+function todaystring() {
+    var today = new Date();
+    var todaystring = today.getFullYear();
+    todaystring += "-";
+    todaystring += today.getMonth() >= 9 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1);
+    todaystring += "-";
+    todaystring += today.getDate() > 9 ? today.getDate() : "0" + today.getDate();
+    return todaystring;
+}
