@@ -219,11 +219,11 @@ function zBasic(){
 	    event.stopPropagation();
 	})  
 	
-//	$('.z-basic-trigger').click(function(){
-//		$('.z-select-box1').css('display','none');
-//	    var _obj = $(this).parents('.z-select-box-wrap1').eq(0).find('.z-select-box1');
-//		_obj.css('display','block');
-//	})
+	$('.z-basic-trigger').click(function(){
+		$('.z-select-box1').css('display','none');
+	    var _obj = $(this).parents('.z-select-box-wrap1').eq(0).find('.z-select-box1');
+		_obj.css('display','block');
+	})
 	
 	/** 文本框 **/	
 	$('.z-basic-input .z-basic-text').hover(function(){

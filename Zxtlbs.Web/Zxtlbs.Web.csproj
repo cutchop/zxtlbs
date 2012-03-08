@@ -71,6 +71,8 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="devicelist.js" />
+    <Content Include="devicelist.ashx" />
     <Content Include="frame\jquery-ui-1.8.18.custom.css" />
     <Content Include="frame\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="frame\jquery.dataTables.js" />
@@ -94,10 +96,13 @@
     <Content Include="objects.txt" />
     <Content Include="report\history.html" />
     <Content Include="report\index.html" />
-    <Content Include="test.htm" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="devicelist.ashx.cs">
+      <DependentUpon>devicelist.ashx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
