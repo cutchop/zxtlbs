@@ -5,7 +5,7 @@ using System.Web;
 namespace Zxtlbs.Web
 {
     /// <summary>
-    /// devices 的摘要说明
+    /// 返回当前用户所属单位下的所有设备
     /// </summary>
     public class devicelist : IHttpHandler
     {

@@ -19,7 +19,6 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 </head>
 <body>
-<form id="form1" runat="server">
 <div id="wrapper">
     <div id="header">
         <div id="headerTop" class="lock">
@@ -37,7 +36,7 @@
                 <div class="area">
                     <div class="loginBox">
                         <div class="loginPic stopPropagation" onclick="toggle('#addMore3');"><img src="frame/images/img.jpg" /></div>
-                        <div class="loginText">张微</div>
+                        <div class="loginText">伍凯</div>
                     </div>
                     <ul class="areaTools stopPropagation">
                         <li title="系统消息" onclick="popupBody('#xtbg_wxts');">
@@ -947,6 +946,5 @@
         ajaxloading('map', 'map/map.html', '实时监控');
     })
 </script>
-</form>
 </body>
 </html>
