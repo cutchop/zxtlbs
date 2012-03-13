@@ -33,3 +33,5 @@ D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\log4net.xml
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\ResolveAssemblyReference.cache
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
+D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.dll
+D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.pdb

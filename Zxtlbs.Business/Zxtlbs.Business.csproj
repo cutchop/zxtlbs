@@ -3,19 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BE326FED-0E9E-4949-B2C0-4C85A5E403C3}</ProjectGuid>
+    <ProjectGuid>{90FA926C-5AE4-4E79-9BA4-5310207207F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zxtlbs.Model</RootNamespace>
-    <AssemblyName>Zxtlbs.Model</AssemblyName>
+    <RootNamespace>Zxtlbs.Business</RootNamespace>
+    <AssemblyName>Zxtlbs.Business</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,27 +36,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOrg.cs" />
-    <Compile Include="ARole.cs" />
-    <Compile Include="ARolePrivilege.cs" />
-    <Compile Include="AUser.cs" />
-    <Compile Include="AUserRole.cs" />
-    <Compile Include="BaseModel.cs" />
-    <Compile Include="DeviceAlertType.cs" />
-    <Compile Include="DeviceCmdDown.cs" />
-    <Compile Include="DeviceHisAlert.cs" />
-    <Compile Include="DeviceHisPhoto.cs" />
-    <Compile Include="DeviceHisTrack.cs" />
-    <Compile Include="DeviceInfo.cs" />
-    <Compile Include="DeviceLogDown.cs" />
-    <Compile Include="DevicePara.cs" />
-    <Compile Include="DeviceState.cs" />
-    <Compile Include="OperationLog.cs" />
+    <Compile Include="Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserBarrier.cs" />
-    <Compile Include="UserBarrierDetail.cs" />
-    <Compile Include="UserBarrierSet.cs" />
-    <Compile Include="UserMapLable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

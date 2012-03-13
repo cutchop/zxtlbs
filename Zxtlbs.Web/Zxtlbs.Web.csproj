@@ -96,6 +96,9 @@
     <Content Include="objects.txt" />
     <Content Include="report\history.html" />
     <Content Include="report\index.html" />
+    <Content Include="SqlMaps\DeviceHisTrack.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +121,9 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="report\history.ashx.cs">
+      <DependentUpon>history.ashx</DependentUpon>
+    </Compile>
     <Compile Include="test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
@@ -644,7 +650,7 @@
     <Content Include="login.aspx" />
     <Content Include="map\map.html" />
     <Content Include="SqlMap.config" />
-    <Content Include="SqlMaps\device_info.xml" />
+    <Content Include="SqlMaps\DeviceInfo.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="common\CVS\Entries" />
@@ -776,11 +782,16 @@
     <None Include="frame\login\CVS\Repository" />
     <None Include="frame\login\CVS\Root" />
     <Content Include="test.ashx" />
+    <Content Include="report\history.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zxtlbs.Business\Zxtlbs.Business.csproj">
+      <Project>{90FA926C-5AE4-4E79-9BA4-5310207207F0}</Project>
+      <Name>Zxtlbs.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zxtlbs.Model\Zxtlbs.Model.csproj">
       <Project>{BE326FED-0E9E-4949-B2C0-4C85A5E403C3}</Project>
       <Name>Zxtlbs.Model</Name>
