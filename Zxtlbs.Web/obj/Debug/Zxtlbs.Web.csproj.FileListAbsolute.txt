@@ -5,11 +5,6 @@ D:\Test\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\Test\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
 D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.dll
 D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.pdb
-D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.Common.xml
-D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.Common.Logging.Log4Net.xml
-D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.DataAccess.xml
-D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.DataMapper.xml
-D:\zxtlbs\Zxtlbs.Web\bin\log4net.xml
 D:\zxtlbs\Zxtlbs.Web\obj\Debug\ResolveAssemblyReference.cache
 D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
@@ -35,3 +30,7 @@ D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.dll
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.pdb
+D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.dll
+D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.dll
+D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.pdb
+D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.pdb

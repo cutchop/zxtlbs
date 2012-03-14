@@ -39,6 +39,12 @@
     <Compile Include="Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zxtlbs.Model\Zxtlbs.Model.csproj">
+      <Project>{BE326FED-0E9E-4949-B2C0-4C85A5E403C3}</Project>
+      <Name>Zxtlbs.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

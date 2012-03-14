@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<sqlMap namespace="DeviceInfo"
+<sqlMap namespace="AOrg"
 xmlns="http://ibatis.apache.org/mapping"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
 
   <!--Type aliases allow you to use a shorter name for long fully qualified class names.-->
   <alias>
-    <typeAlias alias="DeviceInfo" type="Zxtlbs.Model.DeviceInfo, Zxtlbs.Model" />
+    <typeAlias alias="AOrg" type="Zxtlbs.Model.AOrg, Zxtlbs.Model" />
   </alias>
 
   <statements>
-    <select id="GetDeviceListByGroup" resultClass="DeviceInfo" parameterClass="int">
-      select * from device_info where belong_groupid = #belong_groupid#
+    <select id="GetOrgListByParent" resultClass="AOrg" parameterClass="int">
+      select * from zxt_base where parentid = #parentid#
     </select>
   </statements>
 </sqlMap>
