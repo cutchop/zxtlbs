@@ -16,7 +16,7 @@ namespace Zxtlbs.Model
 		private string _device_sim;
 		private string _device_type;
 		private decimal? _ico_num;
-		private decimal? _belong_groupid;
+		private string _belong_groupid;
 		private string _com_mode;
 		private DateTime? _install_date;
 		private decimal? _initial_course;
@@ -90,7 +90,7 @@ namespace Zxtlbs.Model
 		/// <summary>
 		/// 上级ID(所属组ID)
 		/// </summary>
-		public decimal? BELONG_GROUPID
+		public string BELONG_GROUPID
 		{
 			set{ _belong_groupid=value;}
 			get{return _belong_groupid;}

@@ -20,7 +20,9 @@ namespace Zxtlbs.Web.report
             DeviceHisTrack dht = new DeviceHisTrack();
             dht.PageStart = int.Parse(context.Request["iDisplayStart"]);
             dht.PageEnd = int.Parse(context.Request["iDisplayStart"]) + int.Parse(context.Request["iDisplayLength"]);
-            dht.DEVICE_ID = "13000228350";
+            dht.DEVICE_ID = context.Request["device_id"];
+            dht.StartDate = DateTime.Parse(context.Request["d1"] + " 00:00:00");
+            dht.EndDate = DateTime.Parse(context.Request["d2"] + " 23:59:59");
             int total = Mapper.Instance().QueryForObject<int>("GetTrackListTotalByDevice", dht);
             IList<DeviceHisTrack> list = Mapper.Instance().QueryForList<DeviceHisTrack>("GetTrackListByDevice", dht);
             StringBuilder data = new StringBuilder();

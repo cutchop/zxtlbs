@@ -3,11 +3,6 @@ D:\Test\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.dll
 D:\Test\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.pdb
 D:\Test\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\Test\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
-D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.dll
-D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.pdb
-D:\zxtlbs\Zxtlbs.Web\obj\Debug\ResolveAssemblyReference.cache
-D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
-D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
 D:\Test\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.dll
 D:\Test\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.pdb
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.dll
@@ -30,7 +25,12 @@ D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.dll
 D:\wukaiproject\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.pdb
+D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.dll
+D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Web.pdb
 D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.dll
 D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.dll
 D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Business.pdb
 D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.pdb
+D:\zxtlbs\Zxtlbs.Web\obj\Debug\ResolveAssemblyReference.cache
+D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
+D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb

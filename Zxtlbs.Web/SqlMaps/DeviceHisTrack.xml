@@ -13,13 +13,15 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
       <![CDATA[ 
         select a.*,b.device_name from
         (select * from (select ROWNUM RN,T.* from (
-        select * from device_his_track where device_id=#DEVICE_ID# order by logintime desc
+        select * from device_his_track where device_id=#DEVICE_ID# and logintime>=#StartDate# and logintime<=#EndDate# order by logintime desc
         ) T where ROWNUM<=#PageEnd#) where RN>#PageStart#) a
         left join device_info b on a.device_id=b.device_id
       ]]>
     </select>
     <select id="GetTrackListTotalByDevice" resultClass="int" parameterClass="DeviceHisTrack">
-      select count(*) as total from device_his_track where device_id=#DEVICE_ID#
+      <![CDATA[ 
+      select count(*) as total from device_his_track where device_id=#DEVICE_ID# and logintime>=#StartDate# and logintime<=#EndDate#
+      ]]>
     </select>
   </statements>
 </sqlMap>

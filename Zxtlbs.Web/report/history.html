@@ -9,9 +9,20 @@
               <tr>
               <td class="z-search-name">选择车辆</td>
                 <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
-                    <input type="text" disabled="disabled" class="z-basic-text z-basic-text-disable" />
+                    <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
+                    <input type="hidden" id="h-device" value="" />
                     <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
-                    <div class="z-select-box1 z-box1" style="display:none" id="devicelist_div"><script src="devicelist.js" type="text/javascript"></script></div>
+                    <div class="z-select-box1 z-box1" style="display:none">
+                    <div class="z-box-t"><span>&nbsp;</span></div>
+                    <div class="z-box-c">
+                        <div class="z-box-m">
+                            <div class="z-con" id="div-devicelist">
+                                <div>正在加载列表，请稍候…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="z-box-b"><span>&nbsp;</span></div>
+                    </div>
                   </div></td>
                 <td class="z-search-name">选择日期</td>
                 <td><div class="z-basic-time-part-wrap">
@@ -91,16 +102,33 @@
             "iDisplayLength": 20,
             "sPaginationType": "full_numbers"
         });
+
+        $('#div-devicelist').load('devicelisthtml.ashx', function () {
+            zTree();
+            $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {
+                var _text = $(this).text();
+                var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
+                _obj.removeClass('z-basic-text-gray');
+                _obj.val(_text);
+                $("#h-device").val($(this).attr("id").replace("zxt-d-",""));
+                $(this).parents('.z-select-box1').hide();
+            })
+        });
     });
 
     function chaxun() {
+        if ($("#h-device").val() == "") {
+            alert("请选择车辆");
+            return false;
+        }
         var oTable = $('#wlist').dataTable();
         var oSettings = oTable.fnSettings();
         if (oSettings.oFeatures.bServerSide) {
+            oSettings.sAjaxSource = "report/history.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
             oTable.fnPageChange(0);
         } else {
             oSettings.oFeatures.bServerSide = true;
-            oSettings.sAjaxSource = "report/history.ashx";
+            oSettings.sAjaxSource = "report/history.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
             oTable.fnDraw(oSettings);
         }
     }

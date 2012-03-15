@@ -9,8 +9,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
   </alias>
 
   <statements>
-    <select id="GetOrgListByParent" resultClass="AOrg" parameterClass="int">
-      select * from zxt_base where parentid = #parentid#
+    <select id="GetOrgByID" resultClass="AOrg" parameterClass="string">
+      select * from zxt_base.aorg where orgid = #orgid#
+    </select>
+    <select id="GetOrgListLikeID" resultClass="AOrg" parameterClass="string">
+      select * from zxt_base.aorg where orgid like #orgid# order by orgid
     </select>
   </statements>
 </sqlMap>

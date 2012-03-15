@@ -14,6 +14,8 @@ namespace Zxtlbs.Model
         private int _pagenum = 1;
         private int _pagestart = 0;
         private int _pageend = 10;
+        private DateTime? _startdate;
+        private DateTime? _enddate;
 
         public int PageSize
         {
@@ -37,6 +39,18 @@ namespace Zxtlbs.Model
         {
             set { _pageend = value; }
             get { return _pageend; }
+        }
+
+        public DateTime? StartDate
+        {
+            set { _startdate = value; }
+            get { return _startdate; }
+        }
+
+        public DateTime? EndDate
+        {
+            set { _enddate = value; }
+            get { return _enddate; }
         }
     }
 }

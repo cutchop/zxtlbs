@@ -108,6 +108,9 @@
       <DependentUpon>devicelist.ashx</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="devicelisthtml.ashx.cs">
+      <DependentUpon>devicelisthtml.ashx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -756,6 +759,7 @@
     <None Include="common\images\workflow\CVS\Entries.Old" />
     <None Include="common\images\workflow\CVS\Repository" />
     <None Include="common\images\workflow\CVS\Root" />
+    <Content Include="devicelisthtml.ashx" />
     <None Include="frame\CVS\Entries" />
     <None Include="frame\CVS\Entries.Extra" />
     <None Include="frame\CVS\Entries.Extra.Old" />

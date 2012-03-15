@@ -9,8 +9,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
   </alias>
 
   <statements>
-    <select id="GetDeviceListByGroup" resultClass="DeviceInfo" parameterClass="int">
+    <select id="GetDeviceListByGroup" resultClass="DeviceInfo" parameterClass="string">
       select * from device_info where belong_groupid = #belong_groupid#
+    </select>
+    
+    <select id="GetDeviceListByGroups" resultClass="DeviceInfo" parameterClass="string">
+      select * from device_info where belong_groupid like #belong_groupid#
     </select>
   </statements>
 </sqlMap>
