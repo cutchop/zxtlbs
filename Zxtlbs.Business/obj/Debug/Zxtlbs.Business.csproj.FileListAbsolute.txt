@@ -10,3 +10,5 @@ D:\zxtlbs\Zxtlbs.Business\bin\Debug\Zxtlbs.Model.pdb
 D:\zxtlbs\Zxtlbs.Business\obj\Debug\ResolveAssemblyReference.cache
 D:\zxtlbs\Zxtlbs.Business\obj\Debug\Zxtlbs.Business.dll
 D:\zxtlbs\Zxtlbs.Business\obj\Debug\Zxtlbs.Business.pdb
+D:\wukaiproject\zxtlbs\Zxtlbs.Business\bin\Debug\Zxtlbs.Model.dll
+D:\wukaiproject\zxtlbs\Zxtlbs.Business\bin\Debug\Zxtlbs.Model.pdb

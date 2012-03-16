@@ -74,6 +74,12 @@
   <ItemGroup>
     <Content Include="devicelist.js" />
     <Content Include="devicelist.ashx" />
+    <Content Include="frame\dialog\confirmation.png" />
+    <Content Include="frame\dialog\error.png" />
+    <Content Include="frame\dialog\information.png" />
+    <Content Include="frame\dialog\question.png" />
+    <Content Include="frame\dialog\warning.png" />
+    <Content Include="frame\dialog\zebra_dialog.css" />
     <Content Include="frame\jquery-ui-1.8.18.custom.css" />
     <Content Include="frame\jquery-ui-1.8.18.custom.min.js" />
     <Content Include="frame\jquery.dataTables.js" />
@@ -94,6 +100,7 @@
     <Content Include="frame\jquery-ui-1.8.4.custom.css" />
     <Content Include="frame\jquery.dataTables.css" />
     <Content Include="frame\jquery.dataTables_themeroller.css" />
+    <Content Include="frame\dialog\zebra_dialog.js" />
     <Content Include="objects.txt" />
     <Content Include="report\history.html" />
     <Content Include="report\index.html" />
@@ -124,6 +131,9 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="map\mapleft.ashx.cs">
+      <DependentUpon>mapleft.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="report\history.ashx.cs">
@@ -785,6 +795,7 @@
     <None Include="frame\login\CVS\Repository" />
     <None Include="frame\login\CVS\Root" />
     <Content Include="report\history.ashx" />
+    <Content Include="map\mapleft.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

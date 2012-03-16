@@ -30,7 +30,10 @@ namespace Zxtlbs.Model
 		private decimal? _is_temp_sensor;
 		private decimal? _is_is_relay;
 		private DateTime? _createtime;
-		private string _device_remark;
+        private string _device_remark;
+        private decimal? _lon;
+        private decimal? _lat;
+        private string _cur_status;
 		/// <summary>
 		/// 记录ID
 		/// </summary>
@@ -206,7 +209,31 @@ namespace Zxtlbs.Model
 		{
 			set{ _device_remark=value;}
 			get{return _device_remark;}
-		}
+        }
+        /// <summary>
+        /// 经度
+        /// </summary>
+        public decimal? LON
+        {
+            set { _lon = value; }
+            get { return _lon; }
+        }
+        /// <summary>
+        /// 纬度
+        /// </summary>
+        public decimal? LAT
+        {
+            set { _lat = value; }
+            get { return _lat; }
+        }
+        /// <summary>
+        /// 当前状态(离线...)
+        /// </summary>
+        public string CUR_STATUS
+        {
+            set { _cur_status = value; }
+            get { return _cur_status; }
+        }
 		#endregion Model
 
 	}

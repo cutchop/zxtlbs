@@ -7,7 +7,7 @@
           <table class="z-search-box">
             <thead>
               <tr>
-              <td class="z-search-name">选择车辆</td>
+              <td class="z-search-name">选择设备</td>
                 <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
                     <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
                     <input type="hidden" id="h-device" value="" />
@@ -28,12 +28,12 @@
                 <td><div class="z-basic-time-part-wrap">
                     <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
                       <input id="datefrom" type="text" class="z-basic-text z-basic-text-disable" />
-                      <a class="z-btn-trigger" href="javascript:$('#datefrom').focus();"></a></span>
+                      <a class="z-btn-trigger" href="javascript:document.getElementById('datefrom').focus();"></a></span>
                     </div>
                     <div class="z-basic-to">至</div>
                     <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
                       <input id="dateto" type="text" class="z-basic-text z-basic-text-disable" />
-                      <a class="z-btn-trigger" href="javascript:$('#dateto').focus();"></a></span>
+                      <a class="z-btn-trigger" href="javascript:document.getElementById('dateto').focus();"></a></span>
                     </div>
                   </div></td>
               </tr>
@@ -49,31 +49,18 @@
 	        <thead>
 		        <tr>
 			        <th width="10%">设备号码</th>
-			        <th width="10%">设备名称</th>
-			        <th width="13%">上传时间</th>
+			        <th width="13%">设备名称</th>
+			        <th width="16%">上传时间</th>
 			        <th width="7%">状态</th>
 			        <th width="7%">速度</th>
 			        <th width="7%">方向</th>
-			        <th width="10%">里程</th>
+			        <th width="8%">里程</th>
 			        <th width="15%">经纬度</th>
-			        <th width="21%">位置</th>
+			        <th width="17%">位置</th>
 		        </tr>
 	        </thead>
 	        <tbody>
 	        </tbody>
-	        <tfoot>
-		        <tr>
-			        <th>设备号码</th>
-			        <th>设备名称</th>
-			        <th>上传时间</th>
-			        <th>状态</th>
-			        <th>速度</th>
-			        <th>方向</th>
-			        <th>里程</th>
-			        <th>经纬度</th>
-			        <th>位置</th>
-		        </tr>
-	        </tfoot>
         </table>
     </div>
   </div>
@@ -118,7 +105,7 @@
 
     function chaxun() {
         if ($("#h-device").val() == "") {
-            alert("请选择车辆");
+            $.Zebra_Dialog('请选择一个设备');
             return false;
         }
         var oTable = $('#wlist').dataTable();
