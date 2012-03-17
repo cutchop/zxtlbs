@@ -6,8 +6,10 @@
         <div class="z-sub-tools">
           <div class="z-row-oper"> <a href="#" class="z-row-add" onclick="popupBody('#z-zzgl-add')" title="新增"></a><a href="#" class="z-row-edit" onclick="popupBody('#z-zzgl-edit')" title="修改"></a><a href="#" class="z-row-del" onclick="popupBody('#z-zzgl-del')" title="删除"></a><a href="#" class="z-row-up" title="上移"></a><a href="#" class="z-row-down" title="下移"></a> </div>
         </div>
+        <div style="text-align:center;">
+            <input type="text" value="正在加载搜索框" style="padding-left:2px;width:180px;margin:5px;color:#999;border:1px solid #CCC;height:25px;line-height:25px;" />
+        </div>
         <div class="z-sub-choose" id="div-devicelist" style="overflow:auto;">
-            <div id="loadinfo" style="text-align:center;margin-top:200px;">正在加载设备列表，请稍候…</div>
         </div>
       </div>
       <div style="height:100%;margin-left:0px;" class="z-sub-payout-r z-wrap-pm-bg z-sub-payout-r-bg"> 
@@ -20,22 +22,112 @@
   <!--实时监控 结束--> 
 </div>
 <script type="text/javascript">
-    /**地图初始化**/
-	var myOptions = {
-		zoom: 10,
-		center: new google.maps.LatLng(30.556, 114.327),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-    var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-    var infowindow = new google.maps.InfoWindow();
-    function zmarker(id, marker, content) {
+    /**全局初始化**/
+    var map,infowindow,trafficLayer;
+    var dlat = 30.556, dlng = 114.327;
+	var markerArray = [];
+    function zdevice(id,name,lat,lng,sim,status){
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lng = lng;
+        this.sim = sim;
+        this.status = status;
+        this.speed = "正在读取";
+        this.direction = "正在读取";
+        this.logintime = "正在读取";
+        this.group = "正在读取";
+        this.licheng = "正在读取";
+        this.content = '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
+                    + this.name
+                    + '</div><div>所属单位:'
+                    + this.group
+                    + '</div><div>设备号码:'
+                    + this.id
+                    + '</div><div>SIM卡号:'
+                    + this.sim
+                    + '</div><div>设备状态:'
+                    + this.status
+                    + '</div><div>速度:'
+                    + this.speed
+                    + '</div><div>方向:'
+                    + this.direction
+                    + '</div><div>总里程:'
+                    + this.licheng
+                    + '</div><div>经纬度:'
+                    + this.lng + '°E,' + this.lat+'°N'
+                    + '</div><div>定位时间:'
+                    + this.logintime
+                    + '</div><br /><div><a href="#">[历史轨迹]</a>&nbsp;<a href="#">[跟踪监控]</a>&nbsp;<a href="javascript:closeInfo();">[关闭窗口]</a></div></div>';
+    }
+    function zmarker(id, marker, device) {
         this.id = id;
         this.marker = marker;
-        this.content = content;
+        this.device = device;
     }
-	var markerArray = [];
+    /**地图初始化**/
+    function TrafficControl(controlDiv, map) {
+        controlDiv.style.padding = '4px';
+
+        var controlUI = document.createElement('DIV');
+        controlUI.setAttribute('id', 'trafficUI');
+        controlUI.style.width = '62px';
+        controlUI.style.height = '22px';
+        controlUI.style.lineHeight = '22px';
+        controlUI.style.backgroundColor = 'white';
+        controlUI.style.borderStyle = 'solid';
+        controlUI.style.borderWidth = '1px';
+        controlUI.style.borderColor = '#717B87';
+        controlUI.style.fontSize = '13px';
+        controlUI.style.fontFamily = 'Arial,sans-serif';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = '点击显示实时路况';
+        controlUI.innerHTML = '实时路况';
+        controlDiv.appendChild(controlUI);
+
+        google.maps.event.addDomListener(controlUI, 'click', function () {
+            mtraffic();
+        });
+    }
+    function mapInit() {
+    	var myOptions = {
+		    zoom: 10,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+		map = new google.maps.Map(document.getElementById('map_canvas'), myOptions); 
+        var trafficControlDiv = document.createElement('DIV');
+        var trafficControl = new TrafficControl(trafficControlDiv, map);
+        trafficControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(trafficControlDiv);
+        trafficLayer = new google.maps.TrafficLayer();
+        infowindow = new google.maps.InfoWindow();
+        /**检测用户位置**/
+        // Try W3C Geolocation (Preferred)
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                map.setCenter(initialLocation);
+                }, function() {
+                map.setCenter(new google.maps.LatLng(dlat, dlng));
+            });
+        // Try Google Gears Geolocation
+        } else if (google.gears) {
+        var geo = google.gears.factory.create('beta.geolocation');
+        geo.getCurrentPosition(function(position) {
+            initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+            map.setCenter(initialLocation);
+            }, function() {
+            map.setCenter(new google.maps.LatLng(dlat, dlng));
+        });
+        // Browser doesn't support Geolocation
+        } else {
+            map.setCenter(new google.maps.LatLng(dlat, dlng));
+        }
+    }
     /**列表初始化**/
     function loadlist() {
+        $('#div-devicelist').html('<div id="loadinfo" style="text-align:center;margin-top:200px;">正在加载设备列表，请稍候…</div>');
         $('#div-devicelist').load('map/mapleft.ashx', function (response, status, xhr) {
             if (status == "success") {
                 zTree();
@@ -43,57 +135,68 @@
                 $('#div-devicelist').css("height", ht + "px");
                 $('#div-devicelist .z-tree-leaf a').click(function () {
                     var _text = $(this).text();
+                    var _name = _text.substring(0, _text.lastIndexOf('['));
+                    var _status = _text.substring(_text.lastIndexOf('[') + 1).replace("]", "");
                     var _id = $(this).attr("id").replace("zxt-d-", "");
                     var _lon = _id.split('|')[1].split(',')[0];
                     var _lat = _id.split('|')[1].split(',')[1];
                     _id = _id.split('|')[0];
-                    if(markerArray[_id]) {
+                    if (markerArray[_id]) {
                         mshow(_id);
                     } else {
-                        madd(_id, _text, _lat, _lon);
+                        madd(new zdevice(_id, _name, _lat, _lon, _id, _status));
                     }
                 });
             } else {
-                $("#loadinfo").text("加载失败，请<a href=\"loadlist();\">重试</a>");
+                $("#loadinfo").html("加载失败，请<a href=\"javascript:loadlist();\">重试</a>");
             }
         });
     }
-    $(function () { loadlist(); });
     /**地图函数**/
-	function madd(id,name,lat,lng) {
-	    var sim = "正在读取";
-	    var status = "正在读取";
-	    var latlng = new google.maps.LatLng(lat, lng);
+	function madd(device) {
+	    var latlng = new google.maps.LatLng(device.lat, device.lng);
 	    var marker = new google.maps.Marker({
 	        position: latlng,
 	        map: map,
 	        animation: google.maps.Animation.DROP,
-	        title: name,
-            id: id,
+	        title: device.name,
+            id: device.id
 	    });
-	    var content = '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
-                    + name
-                    + '</div><div>设备号码:'
-                    + id
-                    + '</div><div>SIM卡号:'
-                    + sim
-                    + '</div><div>设备状态:'
-                    + status
-                    + '</div></div>';
-	    markerArray.push(new zmarker(id, marker, content));
+        markerArray.push(new zmarker(device.id, marker, device));
 	    markerArray[markerArray[markerArray.length - 1].id] = markerArray[markerArray.length - 1];
 	    google.maps.event.addListener(marker, 'click', function (event) {
-	        infowindow.setContent(markerArray[marker.id].content);
+	        infowindow.setContent(markerArray[marker.id].device.content);
 	        infowindow.open(map, marker);
 	    });
 	    map.setCenter(latlng);
-	    infowindow.setContent(markerArray[id].content);
+	    infowindow.setContent(device.content);
 	    infowindow.open(map, marker);
 	}
 
     function mshow(id){
 	    map.setCenter(markerArray[id].marker.position);
-	    infowindow.setContent(markerArray[id].content);
+	    infowindow.setContent(markerArray[id].device.content);
 	    infowindow.open(map, markerArray[id].marker);
-    }
+	}
+
+	function closeInfo() {
+	    infowindow.close();
+	    return false;
+	}
+
+	function mtraffic() {
+	    if ($("#trafficUI").attr("title") == "点击显示实时路况") {
+	        trafficLayer.setMap(map);
+	        $("#trafficUI").attr("title", "点击取消实时路况");
+	        $("#trafficUI").css("font-weight", "bold");
+	    } else {
+	        trafficLayer.setMap(null);
+	        $("#trafficUI").attr("title", "点击显示实时路况");
+	        $("#trafficUI").css("font-weight", "normal");
+	    }
+	}
+    $(function () { 
+        mapInit();
+        loadlist(); 
+    });
 </script>
