@@ -197,3 +197,5 @@ body,html,#wrapper{width:100%;height:100%;overflow:hidden;}
 .userbox-icon_01{background-position:-128px -33px;}
 .userbox-icon_02{background-position:-149px -33px;}
 .userbox-icon_03{background-position:-170px -33px;}
+
+.z-line{background:url(../../common/images/icon/z-tips-line.gif) repeat-x; height:2px;}

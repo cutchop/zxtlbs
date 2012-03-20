@@ -1,5 +1,4 @@
-﻿<div class="z-wrap"> 
-  <!--实时监控 开始-->
+﻿<div class="z-wrap">
   <div id="z-zzgl-list-01" class="z-wrap-height z-sub-payout-bg">
     <div class="z-sub-payout z-sub-main-bg">
       <div class="z-sub-payout-l">
@@ -12,14 +11,11 @@
         <div class="z-sub-choose" id="div-devicelist" style="overflow:auto;">
         </div>
       </div>
-      <div style="height:100%;margin-left:0px;" class="z-sub-payout-r z-wrap-pm-bg z-sub-payout-r-bg"> 
-        <!--地图开始-->
+      <div style="height:100%;margin-left:0px;" class="z-sub-payout-r z-wrap-pm-bg z-sub-payout-r-bg">
             <div id="map_canvas" style="width:100%;height:100%;"></div>
-        <!--地图结束-->         
       </div>
     </div>
   </div>
-  <!--实时监控 结束--> 
 </div>
 <script type="text/javascript">
     /**全局初始化**/
@@ -148,7 +144,12 @@
                 });
                 $("#device-search").val("搜索设备号码或名称");
                 $("#device-search").attr("readonly", false);
-                var ht = $(window).height() - 70 - 5 - 20 - 30;
+                var ht = $(window).height() - 70 - 5 - 20 - 67;
+                if ($("#header").attr("class") == "headerMin") {
+                    ht = $(window).height() - 70 - 5 - 20 + 34 - 67;
+                } else if ($("#header").attr("class") == "headerMin headerHide") {
+                    ht = $(window).height() - 5 - 5 - 20 - 67;
+                }
                 $('#div-devicelist').css("height", ht + "px");
                 $('#div-devicelist .z-tree-leaf a').click(function () {
                     var _text = $(this).text();
@@ -228,8 +229,13 @@
 	        $("#trafficUI").css("font-weight", "normal");
 	    }
 	}
+
     $(function () { 
         mapInit();
-        loadlist(); 
+        loadlist();
     });
+
+    function heightchange(h) {
+        $('#div-devicelist').css({ 'height': h - 67 });
+    }
 </script>

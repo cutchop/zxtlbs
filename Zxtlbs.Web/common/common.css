@@ -852,7 +852,7 @@ p.z-font-hwxk{color:#333;}
 .z-basic-trigger-hover .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 -75px;}
 .z-basic-trigger-focus .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 -125px;}
 .z-basic-trigger-invalid .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 -225px;}
-.z-basic-trigger .z-basic-text-disable{float:left;display:block;background:url(images/basic/z-basic-input.png) no-repeat 0 -50px;height:20px;border:0;width:170px;padding:0 5px;cursor:default;color:#333;}
+.z-basic-trigger .z-basic-text-disable{float:left;display:block;background:url(images/basic/z-basic-input.png) no-repeat 0 -50px;line-height:20px;height:20px;border:0;width:170px;padding:0 5px;cursor:default;color:#333;}
 .z-basic-trigger-hover .z-basic-text-disable{background:url(images/basic/z-basic-input.png) no-repeat 0 -275px;}
 .z-basic-trigger-focus .z-basic-text-disable{background:url(images/basic/z-basic-input.png) no-repeat 0 -300px;}
 .z-basic-trigger-disable .z-basic-text-disable{background:url(images/basic/z-basic-input.png) no-repeat 0 -325px;color:#888;}

@@ -72,6 +72,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="common\images\pm\yy-region-tips-t.png" />
     <Content Include="devicelist.js" />
     <Content Include="devicelist.ashx" />
     <Content Include="frame\dialog\confirmation.png" />
@@ -132,6 +133,9 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="map\history.ashx.cs">
+      <DependentUpon>history.ashx</DependentUpon>
     </Compile>
     <Compile Include="map\mapleft.ashx.cs">
       <DependentUpon>mapleft.ashx</DependentUpon>
@@ -797,6 +801,7 @@
     <None Include="frame\login\CVS\Root" />
     <Content Include="report\history.ashx" />
     <Content Include="map\mapleft.ashx" />
+    <Content Include="map\history.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,19 +1,14 @@
-﻿<div class="z-wrap"> 
-  <!--实时监控 开始-->
-  <div id="z-zzgl-list-01" class="z-wrap-height z-sub-payout-bg">
-    <div class="z-sub-payout z-sub-main-bg">
-      <div class="z-sub-payout-l">
+﻿<div class="z-wrap">
+  <div id="z-zwgl-list-01" class="z-wrap-height">
     <div class="z-search">
       <div class="z-search-condition">
-        <div class="z-search-term">
-          <table>
+        <div class="z-search-term-three">
+          <table class="z-search-box">
             <thead>
               <tr>
-              <td>选择设备</td>
-              </tr>
-              <tr>
+              <td class="z-search-name">选择设备</td>
                 <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
-                    <input type="text" readonly="readonly" style="width:100px" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
+                    <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
                     <input type="hidden" id="h-device" value="" />
                     <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
                     <div class="z-select-box1 z-box1" style="display:none">
@@ -28,14 +23,10 @@
                     <div class="z-box-b"><span>&nbsp;</span></div>
                     </div>
                   </div></td>
-              </tr>
-              <tr>
                 <td class="z-search-name">选择日期</td>
-              </tr>
-              <tr>
                 <td><div class="z-basic-time-part-wrap">
                     <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
-                      <input id="datefrom" style="width:100px;" type="text" class="z-basic-text z-basic-text-disable" />
+                      <input id="datefrom" type="text" class="z-basic-text z-basic-text-disable" />
                       <a class="z-btn-trigger" href="javascript:document.getElementById('datefrom').focus();"></a></span>
                     </div>
                   </div></td>
@@ -43,228 +34,169 @@
             </thead>
           </table>
         </div>
-        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查询</span></a></div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查看轨迹</span></a></div>
       </div>
     </div>
-      </div>
-      <div style="height:100%;margin-left:0px;" class="z-sub-payout-r z-wrap-pm-bg z-sub-payout-r-bg"> 
-        <!--地图开始-->
-            <div id="map_canvas" style="width:100%;height:100%;"></div>
-        <!--地图结束-->         
-      </div>
+    <div class="z-line"></div>
+    <div style="background:#fff;padding:10px;">
+        <div id="slider"></div>
+        <div style="height:30px;position: relative;">
+            <span id="sliderlabelMin" style="float:left;background:#fff;"><img src="common/images/pm/yy-region-tips-t.png" alt="00:00" /><br /><span id="slidertimeMin">00:00:00</span></span>
+            <span id="sliderlabel" style="float:left;text-align:center;left:0%;margin-left:-47px;position:absolute;display:none;"><img src="common/images/pm/yy-region-tips-t.png" alt="00:00:00" /><br /><span id="slidertime">06:00</span></span>
+            <span id="sliderlabelMax" style="float:right;background:#fff;text-align:right;"><img src="common/images/pm/yy-region-tips-t.png" alt="23:59:59" /><br /><span id="slidertimeMax">23:59:59</span></span>
+            <span style="clear:both;"></span>
+        </div>
     </div>
+    <div class="z-line"></div>
+    <div id="map_canvas" style="width:100%;height:400px;"></div>
   </div>
-  <!--实时监控 结束--> 
 </div>
 <script type="text/javascript">
-    /**全局初始化**/
-    var map,infowindow,trafficLayer;
+    var map, infowindow, poly, marker;
     var dlat = 30.556, dlng = 114.327;
-	var markerArray = [];
-    function zdevice(id,name,lat,lng,sim,status){
-        this.id = id;
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
-        this.sim = sim;
-        this.status = status;
-        this.speed = "正在读取";
-        this.direction = "正在读取";
-        this.logintime = "正在读取";
-        this.group = "正在读取";
-        this.licheng = "正在读取";
-        this.content = '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
-                    + this.name
-                    + '</div><div>所属单位:'
-                    + this.group
-                    + '</div><div>设备号码:'
-                    + this.id
-                    + '</div><div>SIM卡号:'
-                    + this.sim
-                    + '</div><div>设备状态:'
-                    + this.status
-                    + '</div><div>速度:'
-                    + this.speed
-                    + '</div><div>方向:'
-                    + this.direction
-                    + '</div><div>总里程:'
-                    + this.licheng
-                    + '</div><div>经纬度:'
-                    + this.lng + '°E,' + this.lat+'°N'
-                    + '</div><div>定位时间:'
-                    + this.logintime
-                    + '</div><br /><div><a href="#">[历史轨迹]</a>&nbsp;<a href="#">[单独监控]</a>&nbsp;<a href="javascript:mremove(\'' + this.id + '\');">[从地图上去除]</a>&nbsp;<a href="javascript:closeInfo();">[关闭]</a></div></div>';
-    }
-    function zmarker(id, marker, device) {
-        this.id = id;
-        this.marker = marker;
-        this.device = device;
-    }
-    /**地图初始化**/
-    function TrafficControl(controlDiv, map) {
-        controlDiv.style.padding = '4px';
-
-        var controlUI = document.createElement('DIV');
-        controlUI.setAttribute('id', 'trafficUI');
-        controlUI.style.width = '62px';
-        controlUI.style.height = '22px';
-        controlUI.style.lineHeight = '22px';
-        controlUI.style.backgroundColor = 'white';
-        controlUI.style.borderStyle = 'solid';
-        controlUI.style.borderWidth = '1px';
-        controlUI.style.borderColor = '#717B87';
-        controlUI.style.fontSize = '13px';
-        controlUI.style.fontFamily = 'Arial,sans-serif';
-        controlUI.style.cursor = 'pointer';
-        controlUI.style.textAlign = 'center';
-        controlUI.title = '点击显示实时路况';
-        controlUI.innerHTML = '实时路况';
-        controlDiv.appendChild(controlUI);
-
-        google.maps.event.addDomListener(controlUI, 'click', function () {
-            mtraffic();
-        });
-    }
+    var hdata = [];
+    var slider;
+    var drawI = 0;
+    var playI = 0;
+    var timer;
     function mapInit() {
-    	var myOptions = {
-		    zoom: 10,
-		    mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
-		map = new google.maps.Map(document.getElementById('map_canvas'), myOptions); 
-        var trafficControlDiv = document.createElement('DIV');
-        var trafficControl = new TrafficControl(trafficControlDiv, map);
-        trafficControlDiv.index = 1;
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(trafficControlDiv);
-        trafficLayer = new google.maps.TrafficLayer();
-        infowindow = new google.maps.InfoWindow();
+        var ht = $(window).height() - 70 - 5 - 20 - 112;
+        if ($("#header").attr("class") == "headerMin") {
+            ht = $(window).height() - 70 - 5 - 20 + 34 - 112;
+        } else if ($("#header").attr("class") == "headerMin headerHide") {
+            ht = $(window).height() - 5 - 5 - 20 - 112;
+        }
+        $("#map_canvas").css("height", ht + "px");
+        var myOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         /**检测用户位置**/
         // Try W3C Geolocation (Preferred)
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 map.setCenter(initialLocation);
-                }, function() {
+            }, function () {
                 map.setCenter(new google.maps.LatLng(dlat, dlng));
             });
-        // Try Google Gears Geolocation
+            // Try Google Gears Geolocation
         } else if (google.gears) {
-        var geo = google.gears.factory.create('beta.geolocation');
-        geo.getCurrentPosition(function(position) {
-            initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
-            map.setCenter(initialLocation);
-            }, function() {
-            map.setCenter(new google.maps.LatLng(dlat, dlng));
-        });
-        // Browser doesn't support Geolocation
+            var geo = google.gears.factory.create('beta.geolocation');
+            geo.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.latitude, position.longitude);
+                map.setCenter(initialLocation);
+            }, function () {
+                map.setCenter(new google.maps.LatLng(dlat, dlng));
+            });
+            // Browser doesn't support Geolocation
         } else {
             map.setCenter(new google.maps.LatLng(dlat, dlng));
         }
+        marker = new google.maps.Marker();
+        infowindow = new google.maps.InfoWindow();
+        poly = new google.maps.Polyline({
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        poly.setMap(map);
     }
-    /**列表初始化**/
-    function loadlist() {
-        $('#div-devicelist').html('<div id="loadinfo" style="text-align:center;margin-top:200px;">正在加载设备列表，请稍候…</div>');
-        $('#div-devicelist').load('map/mapleft.ashx', function (response, status, xhr) {
-            if (status == "success") {
-                zTree();
-                $("#device-search").focus(function () {
-                    if ($(this).val() == "搜索设备号码或名称") {
-                        $(this).val("");
-                        $(this).css("color","#333");
-                    }
-                });
-                $("#device-search").blur(function () {
-                    if ($(this).val() == "") {
-                        $(this).val("搜索设备号码或名称");
-                        $(this).css("color", "#999");
-                    }
-                });
-                $("#device-search").keyup(function () {
-                    searchdevice($(this).val());
-                });
-                $("#device-search").val("搜索设备号码或名称");
-                $("#device-search").attr("readonly", false);
-                var ht = $(window).height() - 70 - 5 - 20 - 30;
-                $('#div-devicelist').css("height", ht + "px");
-                $('#div-devicelist .z-tree-leaf a').click(function () {
-                    var _text = $(this).text();
-                    var _name = _text.substring(0, _text.lastIndexOf('['));
-                    var _status = _text.substring(_text.lastIndexOf('[') + 1).replace("]", "");
-                    var _id = $(this).attr("id").replace("zxt-d-", "");
-                    var _lon = _id.split('|')[1].split(',')[0];
-                    var _lat = _id.split('|')[1].split(',')[1];
-                    _id = _id.split('|')[0];
-                    if (markerArray[_id]) {
-                        mshow(_id);
-                    } else {
-                        madd(new zdevice(_id, _name, _lat, _lon, _id, _status));
-                    }
-                });
+    function sildeTo(i) {
+        $("#slidertime").text(hdata[i][0]);
+        if (i == hdata.length - 1 || i == 0) {
+            $("#sliderlabel").css("display", "none");
+        } else {
+            $("#sliderlabel").css("left", (i / slider.slider("option", "max") * 100) + "%");
+            $("#sliderlabel").css("display", "");
+        }
+        var latLng = new google.maps.LatLng(hdata[i][6], hdata[i][5]);
+        marker.setPosition(latLng);
+        map.setCenter(latLng);
+        while (drawI < i) {
+            drawI++;
+            poly.getPath().push(new google.maps.LatLng(hdata[drawI][6], hdata[drawI][5]));
+        }
+        playI = i;
+    }
+    function sliderInit() {
+        slider = $("#slider").slider({
+            range: "min",
+            slide: function (event, ui) {
+                sildeTo(ui.value);
+            }
+        });
+        slider.slider("value", 0);
+        slider.slider("option", "max", 0);
+        $("#datefrom").datepicker({
+            minDate: -90,
+            maxDate: 0
+        });
+    }
+    function hisplay() {
+        if (playI < hdata.length - 1) {
+            slider.slider("value", playI + 1);
+            sildeTo(playI + 1);
+        }
+        timer = setTimeout("hisplay()", 1000);
+    }
+    function chaxun() {
+        if ($("#h-device").val() == "") {
+            $.Zebra_Dialog('请选择一个设备');
+            return false;
+        }
+        //还原控件状态
+        slider.slider("value", 0);
+        slider.slider("option", "max", 0);
+        $("#slidertimeMin").text("00:00:00");
+        $("#slidertimeMax").text("23:59:59");
+        $("#sliderlabel").css("display", "none");
+        poly.setMap(null);
+        marker.setMap(null);
+        drawI = 0;
+        playI = 0;
+        clearTimeout(timer);
+        //读取历史数据
+        $.getJSON('map/history.ashx', { device_id: $("#h-device").val(), d1: $("#datefrom").val(), d2: $("#datefrom").val() }, function (data) {
+            hdata = data;
+            slider.slider("option", "max", data.length - 1);
+            if (data.length > 0) {
+                var latLng = new google.maps.LatLng(data[0][6], data[0][5]);
+                marker.setMap(map);
+                marker.setPosition(latLng);
+                poly.setMap(map);
+                poly.setPath([latLng]);
+                map.setCenter(latLng);
+                $("#slidertimeMin").text(data[0][0]);
+                $("#slidertimeMax").text(data[data.length - 1][0]);
+                hisplay(); //开始播放
             } else {
-                $("#loadinfo").html("加载失败，请<a href=\"javascript:loadlist();\">重试</a>");
+                $.Zebra_Dialog("这段时间内没有找到历史数据");
+                return false;
             }
         });
     }
-    function searchdevice(k) {
-        $("#div-devicelist .z-tree-leaf a").each(function () {
-            if ($(this).text().indexOf(k) < 0) {
-                $(this).css("display", "none");
-            } else {
-                $(this).css("display", "");
-            }
-        });
+
+    function heightchange(h) {
+        $('#map_canvas').css({ 'height': h - 112 });
     }
-    /**地图函数**/
-	function madd(device) {
-	    var latlng = new google.maps.LatLng(device.lat, device.lng);
-	    var marker = new google.maps.Marker({
-	        position: latlng,
-	        map: map,
-	        animation: google.maps.Animation.DROP,
-	        title: device.name,
-            id: device.id
-	    });
-        markerArray.push(new zmarker(device.id, marker, device));
-        markerArray[markerArray[markerArray.length - 1].id] = markerArray[markerArray.length - 1];
-	    google.maps.event.addListener(marker, 'click', function (event) {
-	        infowindow.setContent(markerArray[marker.id].device.content);
-	        infowindow.open(map, marker);
-	    });
-	    map.setCenter(latlng);
-	    infowindow.setContent(device.content);
-	    infowindow.open(map, marker);
-	}
 
-	function mremove(id) {
-	    infowindow.close();
-	    markerArray[id].marker.setMap(null);
-	    markerArray[id] = null;
-	    return;
-	}
-
-    function mshow(id){
-	    map.setCenter(markerArray[id].marker.position);
-	    infowindow.setContent(markerArray[id].device.content);
-	    infowindow.open(map, markerArray[id].marker);
-	}
-
-	function closeInfo() {
-	    infowindow.close();
-	    return false;
-	}
-
-	function mtraffic() {
-	    if ($("#trafficUI").attr("title") == "点击显示实时路况") {
-	        trafficLayer.setMap(map);
-	        $("#trafficUI").attr("title", "点击取消实时路况");
-	        $("#trafficUI").css("font-weight", "bold");
-	    } else {
-	        trafficLayer.setMap(null);
-	        $("#trafficUI").attr("title", "点击显示实时路况");
-	        $("#trafficUI").css("font-weight", "normal");
-	    }
-	}
-    $(function () { 
-        mapInit();
-        loadlist(); 
+    $(function () {
+        mapInit(); //地图
+        sliderInit();//slider
+        $("#datefrom").val(todaystring()); //日期选择框
+        //设备列表
+        $('#div-devicelist').load('devicelisthtml.ashx', function () {
+            zTree();
+            $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {
+                var _text = $(this).text();
+                var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
+                _obj.removeClass('z-basic-text-gray');
+                _obj.val(_text);
+                $("#h-device").val($(this).attr("id").replace("zxt-d-", ""));
+                $(this).parents('.z-select-box1').hide();
+            })
+        });
     });
 </script>
