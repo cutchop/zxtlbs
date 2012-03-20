@@ -101,6 +101,7 @@
     <Content Include="frame\jquery.dataTables.css" />
     <Content Include="frame\jquery.dataTables_themeroller.css" />
     <Content Include="frame\dialog\zebra_dialog.js" />
+    <Content Include="map\history.html" />
     <Content Include="objects.txt" />
     <Content Include="report\history.html" />
     <Content Include="report\index.html" />

@@ -34,3 +34,8 @@ D:\zxtlbs\Zxtlbs.Web\bin\Zxtlbs.Model.pdb
 D:\zxtlbs\Zxtlbs.Web\obj\Debug\ResolveAssemblyReference.cache
 D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.dll
 D:\zxtlbs\Zxtlbs.Web\obj\Debug\Zxtlbs.Web.pdb
+D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.Common.xml
+D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.Common.Logging.Log4Net.xml
+D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.DataAccess.xml
+D:\zxtlbs\Zxtlbs.Web\bin\IBatisNet.DataMapper.xml
+D:\zxtlbs\Zxtlbs.Web\bin\log4net.xml

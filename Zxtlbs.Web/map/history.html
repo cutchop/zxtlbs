@@ -3,14 +3,49 @@
   <div id="z-zzgl-list-01" class="z-wrap-height z-sub-payout-bg">
     <div class="z-sub-payout z-sub-main-bg">
       <div class="z-sub-payout-l">
-        <div class="z-sub-tools">
-          <div class="z-row-oper"> <a href="#" class="z-row-add" onclick="popupBody('#z-zzgl-add')" title="新增"></a><a href="#" class="z-row-edit" onclick="popupBody('#z-zzgl-edit')" title="修改"></a><a href="#" class="z-row-del" onclick="popupBody('#z-zzgl-del')" title="删除"></a><a href="#" class="z-row-up" title="上移"></a><a href="#" class="z-row-down" title="下移"></a> </div>
+    <div class="z-search">
+      <div class="z-search-condition">
+        <div class="z-search-term">
+          <table>
+            <thead>
+              <tr>
+              <td>选择设备</td>
+              </tr>
+              <tr>
+                <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
+                    <input type="text" readonly="readonly" style="width:100px" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
+                    <input type="hidden" id="h-device" value="" />
+                    <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
+                    <div class="z-select-box1 z-box1" style="display:none">
+                    <div class="z-box-t"><span>&nbsp;</span></div>
+                    <div class="z-box-c">
+                        <div class="z-box-m">
+                            <div class="z-con" id="div-devicelist">
+                                <div>正在加载列表，请稍候…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="z-box-b"><span>&nbsp;</span></div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr>
+                <td class="z-search-name">选择日期</td>
+              </tr>
+              <tr>
+                <td><div class="z-basic-time-part-wrap">
+                    <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
+                      <input id="datefrom" style="width:100px;" type="text" class="z-basic-text z-basic-text-disable" />
+                      <a class="z-btn-trigger" href="javascript:document.getElementById('datefrom').focus();"></a></span>
+                    </div>
+                  </div></td>
+              </tr>
+            </thead>
+          </table>
         </div>
-        <div style="text-align:center;">
-            <input id="device-search" type="text" value="正在加载搜索框..." readonly="readonly" style="padding-left:2px;width:180px;margin:5px;color:#999;border:1px solid #CCC;height:25px;line-height:25px;" />
-        </div>
-        <div class="z-sub-choose" id="div-devicelist" style="overflow:auto;">
-        </div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查询</span></a></div>
+      </div>
+    </div>
       </div>
       <div style="height:100%;margin-left:0px;" class="z-sub-payout-r z-wrap-pm-bg z-sub-payout-r-bg"> 
         <!--地图开始-->
