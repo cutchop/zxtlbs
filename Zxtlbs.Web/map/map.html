@@ -51,10 +51,12 @@
                     + '</div><div>总里程:'
                     + this.licheng
                     + '</div><div>经纬度:'
-                    + this.lng + '°E,' + this.lat+'°N'
+                    + this.lng + '°E,' + this.lat + '°N'
                     + '</div><div>定位时间:'
                     + this.logintime
-                    + '</div><br /><div><a href="#">[历史轨迹]</a>&nbsp;<a href="#">[单独监控]</a>&nbsp;<a href="javascript:mremove(\'' + this.id + '\');">[从地图上去除]</a>&nbsp;<a href="javascript:closeInfo();">[关闭]</a></div></div>';
+                    + '</div><br /><div><a href="javascript:_t_d_id=\'' + this.id + '\';_t_d_name=\'' + this.name + '\';ajaxloading(\'history\',\'map/history.html\',\'历史轨迹\');">[历史轨迹]</a>'
+                    + '&nbsp;<a href="#">[单独监控]</a>&nbsp;<a href="javascript:mremove(\'' + this.id + '\');">[从地图上去除]</a>'
+                    + '&nbsp;<a href="javascript:closeInfo();">[关闭]</a></div></div>';
     }
     function zmarker(id, marker, device) {
         this.id = id;
@@ -215,7 +217,6 @@
 
 	function closeInfo() {
 	    infowindow.close();
-	    return false;
 	}
 
 	function mtraffic() {

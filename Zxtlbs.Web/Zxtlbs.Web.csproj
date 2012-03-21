@@ -75,6 +75,8 @@
     <Content Include="common\images\pm\yy-region-tips-t.png" />
     <Content Include="devicelist.js" />
     <Content Include="devicelist.ashx" />
+    <Content Include="device\device.html" />
+    <Content Include="device\index.html" />
     <Content Include="frame\dialog\confirmation.png" />
     <Content Include="frame\dialog\error.png" />
     <Content Include="frame\dialog\information.png" />
@@ -120,6 +122,9 @@
     <Compile Include="devicelisthtml.ashx.cs">
       <DependentUpon>devicelisthtml.ashx</DependentUpon>
     </Compile>
+    <Compile Include="device\device.ashx.cs">
+      <DependentUpon>device.ashx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,8 +165,6 @@
     <Content Include="common\images\basic\z-basic-search.png" />
     <Content Include="common\images\basic\z-basic-select.png" />
     <Content Include="common\images\basic\z-basic-time.png" />
-    <Content Include="common\images\basic\z-calendar1.gif" />
-    <Content Include="common\images\basic\z-calendar2.gif" />
     <Content Include="common\images\basic\z-line.gif" />
     <Content Include="common\images\basic\z-select-bg.gif" />
     <Content Include="common\images\basic\z-set-column-title-bg.png" />
@@ -272,7 +275,6 @@
     <Content Include="common\images\icon\file2.gif" />
     <Content Include="common\images\icon\file3.gif" />
     <Content Include="common\images\icon\overdue.png" />
-    <Content Include="common\images\icon\upload-pic2.jpg" />
     <Content Include="common\images\icon\urgent.png" />
     <Content Include="common\images\icon\z-affix-speed-bg.png" />
     <Content Include="common\images\icon\z-affix.gif" />
@@ -520,10 +522,6 @@
     <Content Include="common\images\workflow\z-workflow-box4-topright.gif" />
     <Content Include="common\images\workflow\z-workflow-line.gif" />
     <Content Include="common\images\workflow\z-workflow-oper_bg.gif" />
-    <Content Include="common\images\workflow\z-workflow-person.gif" />
-    <Content Include="common\images\workflow\z-workflow-person1.gif" />
-    <Content Include="common\images\workflow\z-workflow-person2.gif" />
-    <Content Include="common\images\workflow\z-workflow-person3.gif" />
     <Content Include="common\images\workflow\z-workflow-pic-bg.gif" />
     <Content Include="common\images\workflow\z-workflow-pic01.gif" />
     <Content Include="common\images\workflow\z-workflow-pic02.gif" />
@@ -583,11 +581,8 @@
     <Content Include="frame\images\header_l.png" />
     <Content Include="frame\images\header_r.png" />
     <Content Include="frame\images\help.png" />
-    <Content Include="frame\images\imBOX.png" />
     <Content Include="frame\images\img.gif" />
     <Content Include="frame\images\img.jpg" />
-    <Content Include="frame\images\imIMG.jpg" />
-    <Content Include="frame\images\imIMG.png" />
     <Content Include="frame\images\navIcon_gylgl.png" />
     <Content Include="frame\images\navIcon_gzt.png" />
     <Content Include="frame\images\navIcon_htgl.png" />
@@ -654,7 +649,6 @@
     <Content Include="frame\images\wrapIcon-hover.png" />
     <Content Include="frame\images\wrapIcon-min-active.png" />
     <Content Include="frame\images\wrapIcon-min-l-active.png" />
-    <Content Include="frame\images\yj.jpg" />
     <Content Include="frame\images\_bg.jpg" />
     <Content Include="frame\jquery-1.6.2.min.js" />
     <Content Include="frame\login.css" />
@@ -775,6 +769,7 @@
     <None Include="common\images\workflow\CVS\Repository" />
     <None Include="common\images\workflow\CVS\Root" />
     <Content Include="devicelisthtml.ashx" />
+    <Content Include="device\device.ashx" />
     <None Include="frame\CVS\Entries" />
     <None Include="frame\CVS\Entries.Extra" />
     <None Include="frame\CVS\Entries.Extra.Old" />

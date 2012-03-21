@@ -8,7 +8,7 @@
               <tr>
               <td class="z-search-name">选择设备</td>
                 <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
-                    <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
+                    <input type="text" id="t-device" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
                     <input type="hidden" id="h-device" value="" />
                     <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
                     <div class="z-select-box1 z-box1" style="display:none">
@@ -102,6 +102,26 @@
             strokeWeight: 2
         });
         poly.setMap(map);
+        google.maps.event.addListener(marker, 'click', function (event) {
+            infowindow.open(map, marker);
+        });
+    }
+    function getContent(obj) {
+        return '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
+                    + $("#t-device").val()
+                    + '</div><div>状态:'
+                    + obj[1]
+                    + '</div><div>速度:'
+                    + obj[2]
+                    + '</div><div>方向:'
+                    + obj[3]
+                    + '</div><div>总里程:'
+                    + obj[4]
+                    + '</div><div>经纬度:'
+                    + obj[5] + '°E,' + obj[6] + '°N'
+                    + '</div><div>定位时间:'
+                    + obj[0]
+                    + '</div></div>';
     }
     function sildeTo(i) {
         $("#slidertime").text(hdata[i][0]);
@@ -114,6 +134,8 @@
         var latLng = new google.maps.LatLng(hdata[i][6], hdata[i][5]);
         marker.setPosition(latLng);
         map.setCenter(latLng);
+        infowindow.setContent(getContent(hdata[i]));
+        infowindow.open(map, marker);
         while (drawI < i) {
             drawI++;
             poly.getPath().push(new google.maps.LatLng(hdata[drawI][6], hdata[drawI][5]));
@@ -184,9 +206,16 @@
 
     $(function () {
         mapInit(); //地图
-        sliderInit();//slider
+        sliderInit(); //slider
         $("#datefrom").val(todaystring()); //日期选择框
         //设备列表
+        if (_t_d_id != "" && _t_d_name != "") {
+            $("#h-device").val(_t_d_id);
+            $("#t-device").val(_t_d_name);
+            $("#t-device").removeClass('z-basic-text-gray');
+            _t_d_id = "";
+            _t_d_name = "";
+        }
         $('#div-devicelist').load('devicelisthtml.ashx', function () {
             zTree();
             $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {

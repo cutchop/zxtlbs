@@ -1,20 +1,3 @@
-/**
- * Z系列数管制作组件 
- * 制作部门：中企动力 数字管理部 界面设计制作部
- * 制作人员：钱晶(qianjing@300.cn)、胡苹(huping@300.cn)、谢玥(xieyue@300.cn)、张海荣(zhanghairong@300.cn)、彭元(pengyuan@300.cn)
- * 制作时间:2011-9-12
- * 更新时间:2011-9-12
- *
- * 样式目录:* 第一部分 基础样式部分
- *     ∟reset 
- *     ∟global 
- * 第二部分 组件样式部分 
- *     ∟页签 Tab
- *     ∟结构树 Tree
- * 第三部分 页面模式部分 
- */
-
-
 /* 第一部分 基础样式部分 */
 /* reset */
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{padding:0;margin:0;}
@@ -96,7 +79,7 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 .alpha0{filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
  
 /* 第二部分 组件样式部分 */
-/* 页签 Tab */
+/* 页签 Tab 
 .z-tab-gray .z-tab-menu{height:26px;background:url(images/tab/z-tab-gray.gif) 0 -124px repeat-x;padding:4px 0 0 10px;}
 .z-tab-gray .z-tab-menu li{float:left;margin-right:10px;}
 .z-tab-gray .z-tab-menu li a{padding-left:11px;text-align:center;display:inline;float:left;}
@@ -140,9 +123,9 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 .z-tab-skin-blue .z-tab-box-footer{background:url("images/tab/z-tab-content-skin-blue-bl.png") no-repeat 0 0;padding-left:4px;}
 .z-tab-skin-blue .z-tab-box-footer-tr{background:url("images/tab/z-tab-content-skin-blue-br.png") no-repeat 100% 0;padding-right:4px;} 
 .z-tab-skin-blue .z-tab-box-footer-tc{background:url("images/tab/z-tab-content-skin-blue-bc.png") repeat-x 0 0;height:4px;}
+*/
 
-
-/* 中间件弹出层页签 */
+/* 中间件弹出层页签 
 .z-tab-form .z-tab-menu {height:26px;background:url(images/tab/z-tab-form.gif) 0 -62px repeat-x;padding:2px 0 0 10px;}
 .z-tab-form .z-tab-menu li{float:left;margin-right:10px;}
 .z-tab-form .z-tab-menu li a{padding-left:10px;text-align:center;display:inline;float:left;}
@@ -156,7 +139,7 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 .z-tab-box{clear:both;}
 .z-tab-box-content{display:none;}
 .z-tab-box-border{border:1px solid #ccc;border-top:0;}
-
+*/
 
 /* 结构树 Tree */
 .z-tree{position:relative;}
@@ -177,16 +160,16 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 
 .z-tree-icon .z-tree-ul {padding-left:15px !important;}
 
-/* 列表 List */
-.z-list{width:100%;/*overflow-x:auto;*/background:#fff;overflow:visible;}
-.z-list-table{width:100%;/*table-layout:fixed;*/}
+/* 列表 List 
+.z-list{width:100%;background:#fff;overflow:visible;}
+.z-list-table{width:100%;}
 .z-list-table thead{background:url(images/list/z-list-table-thead-bg1.gif) repeat-x;border-bottom:1px solid #d3d2d2;border-top:1px solid #e7e7e7;}
 .z-list-table th{height:18px;line-height:18px;border-right:1px solid #d3d2d2;padding:0 15px 0 10px;}
 .z-list-table td{padding:3px 15px 3px 10px;line-height:20px;border-bottom:1px solid #ededed;border-right:1px transparent;}
 
 .z-list-table td img {vertical-align:middle;}
 .z-list-table th.z-hover{background:url(images/list/z-list-table-th-hover.gif) repeat-x;}
-.z-list-table .z-last {/*border-right-color:transparent;*/ border-right:0;}
+.z-list-table .z-last {border-right:0;}
 .z-list-table tr.z-hover{background:#eaf4fc;}
 .z-list-table tr.z-click{background:#eaf4fc;}
 .z-list-table .z-first {width:30px;text-align:center;padding:0;}
@@ -208,7 +191,7 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 .z-list-table .z-list-tips .z-list-tips-con p {text-align:left;padding-left:50px;}
 
 .z-list-table-none .z-list-sort-down{ display:none!important;}
-
+*/
 /* 列表 List 左右带边线的列表 */
 .z-list1{width:100%;overflow-x:auto;border:1px solid #D3D2D2;background:#fff !important;}
 .z-list1 .z-list-table-t{border-top:0;}
@@ -233,19 +216,7 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 .z-list-info-table td.progress .progress-bar { float:left; width:185px; background:#8bca5b; height:10px; line-height:10px; margin-top:3px;}
 .z-list-info-table td.progress .progress-percent {float:left; margin-left:5px;}
 
-/*步骤 Step*/
-/*.z-step{width:100%;position:relative;}
-.z-step-l{background:url(images/step/z-step-l.gif) left top no-repeat;}
-.z-step-r{background:url(images/step/z-step-r.gif) right top no-repeat;padding:0 10px;}
-.z-step-c{background:url(images/step/z-step-bg.gif) repeat-x;width:100%;height:22px;}
-.z-step-content{width:100%}
-.z-step-content td{text-align:center;}
-.z-step-content a{color:#333333;cursor:default;text-decoration:none;}
-.z-step-content .z-step-now{background:url(images/step/z-step-active-l.gif) left top no-repeat;margin:0 -10px;} 
-.z-step-content .z-step-now span{display:block;background:url(images/step/z-step-active-r.gif) right top no-repeat;padding:0 10px;} 
-.z-step-content .z-step-now span a{display:block;height:19px;background:url(images/step/z-step-active-bg.gif) repeat-x;margin-top:1px;line-height:19px;color:#fff;}
-.z-step-content .z-step-past span a{color:#888888;}*/
-
+/*步骤 Step
 .z-step{position:relative;}
 .z-step-l{background:url(images/step/z-step-bg.png) left top no-repeat;}
 .z-step-r{background:url(images/step/z-step-bg.png) right bottom no-repeat; padding:0 20px; display:inline-block;}
@@ -259,8 +230,8 @@ a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFo
 .z-step ul li.z-step-now span a{background:url(images/step/z-step-active-bg.png) left center repeat-x;color:#ffffff;}
 .z-step ul li.z-step-past span a{color:#888888;}
 .z-step ul li.z-step-last{margin-right:-20px;}
-
-/* 翻页 Page */
+*/
+/* 翻页 Page 
 .z-page{position:relative;background:#f5f6f7;height:22px;padding-top:4px;}
 .z-page-width{width:100%;position:relative;}
 .z-page .z-page-left{float:left;position:absolute;left:10px;top:0;}
@@ -284,6 +255,7 @@ a.z-page-next-disable{background:url(images/page/z-page.gif) 0 -147px no-repeat;
 .z-page span.z-page-current{color:#e38516;border:1px solid #fdd588;background:#ffffcc;}
 .z-page .z-page-right{position:absolute;right:10px;top:0;}
 .z-wrap .z-page .z-select-box1{margin:-115px 0 0 1px;}
+*/
 
 /**** 查询 ****/
 .z-search{background:url(images/search/z-search-line.gif) 0 100% repeat-x #e7e7e7;padding:10px;}

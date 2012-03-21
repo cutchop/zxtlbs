@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Zxtlbs.Web.index" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,6 +18,10 @@
 <script type="text/javascript" src="common/common.js"></script>
 <script type="text/javascript" src="frame/frame.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+    var _t_d_id = "";
+    var _t_d_name = "";
+</script>
 </head>
 <body>
 <div id="wrapper">
@@ -30,7 +33,7 @@
                     <li id="nav_map"><div class="wrapIcon" onclick="ajaxloading('map','map/map.html','实时监控')"><em class="navIcon_map">&nbsp;</em><span>实时监控</span></div></li>
                     <li id="nav_history"><div class="wrapIcon" onclick="ajaxloading('history','map/history.html','历史轨迹')"><em class="navIcon_history">&nbsp;</em><span>历史轨迹</span></div></li>
                     <li id="nav_report"><div class="wrapIcon" onclick="ajaxloading('report','report/index.html','报表管理')"><em class="navIcon_report">&nbsp;</em><span>报表管理</span></div></li>
-					<li id="nav_device"><div class="wrapIcon" onclick="ajaxloading('device','device/device.html','设备管理')"><em class="navIcon_device">&nbsp;</em><span>设备管理</span></div></li>
+					<li id="nav_device"><div class="wrapIcon" onclick="ajaxloading('device','device/index.html','设备管理')"><em class="navIcon_device">&nbsp;</em><span>设备管理</span></div></li>
                     <li id="nav_setting"><div class="wrapIcon" onclick="ajaxloading('setting','setting/setting.html','系统设置')"><em class="navIcon_setting">&nbsp;</em><span>系统设置</span></div></li>
                     <li id="nav_other"><div class="wrapIcon"><em class="navIcon_other">&nbsp;</em><span>其他系统</span></div></li>
                 </ul>
@@ -83,30 +86,29 @@
                         <div class="userbox-info-wrap">
                         <div class="userbox-img"><img alt="" src="frame/images/img.gif" /></div>
                         <h3 class="userbox-name">伍凯</h3>
-                        <p class="userbox-info">中企动力 > 数字管理部</p>
+                        <p class="userbox-info">中信通网络信息有限责任公司</p>
                         </div>
 <table class="tableStyle tableStyleNoBorder cb" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="tr" width="60"><strong>登录帐号</strong></td>
-        <td>zhoujianguo</td>
+        <td>wukai</td>
     </tr>
     <tr>
         <td class="tr"><strong>公司电话</strong></td>
-        <td>010-83921321-990</td>
+        <td>027-86810188</td>
     </tr>
     <tr>
         <td class="tr"><strong>手机</strong></td>
-        <td>13627382212</td>
+        <td>13871105271</td>
     </tr>
     <tr>
         <td class="tr"><strong>公司邮箱</strong></td>
-        <td>zhoujianguo@300.cn</td>
+        <td>wk@whzxt.cn</td>
     </tr>
 </table>
 <div class="userbox-icon">
     <span class="userbox-icon_01" onclick="popupBody('#userpop_grxx');hiddenDiv('#addMore3')" title="个人设置" alt="个人设置">&nbsp;</span>
     <span class="userbox-icon_02" onclick="popupBody('#userpop_xgmm');hiddenDiv('#addMore3')" title="修改密码" alt="修改密码">&nbsp;</span>
-    <span class="userbox-icon_03" onclick="winOpen('html/community/my_index.html',800,600);hiddenDiv('#addMore3')" title="我的空间" alt="我的空间">&nbsp;</span>
 </div>
                     </div>
                 </div>
@@ -174,11 +176,11 @@
         <table class="z-window-form"> 
             <tr> 
               <td width="60" class="label">登录帐号</td> 
-              <td class="space"><span class="z-font-gray">zhoujianguo</span></td> 
+              <td class="space"><span class="z-font-gray">wukai</span></td> 
             </tr> 
             <tr> 
               <td class="label">姓名</td> 
-              <td class="space"><span class="z-font-gray">周建国</span></td> 
+              <td class="space"><span class="z-font-gray">伍凯</span></td> 
             </tr> 
             <tr> 
               <td class="label">性别</td> 
@@ -193,20 +195,20 @@
             <tr> 
               <td class="label">手机</td> 
               <td class="space"><span class="z-basic-input"> 
-                <input type="text" value="13526372822" class="z-basic-text" /> 
+                <input type="text" value="13871105271" class="z-basic-text" /> 
                 </span></td> 
             </tr> 
             <tr> 
               <td class="label">公司邮箱</td> 
-              <td class="space"><span class="z-font-gray">zhoujianguo@300.cn</span></td> 
+              <td class="space"><span class="z-font-gray">wk@whzxt.cn</span></td> 
             </tr> 
             <tr> 
               <td class="label">部门</td> 
-              <td class="space"><span class="z-font-gray">数字管理部</span></td> 
+              <td class="space"><span class="z-font-gray">研发部</span></td> 
             </tr> 
             <tr> 
               <td class="label">职务</td> 
-              <td class="space"><span class="z-font-gray">可用性工程师</span></td> 
+              <td class="space"><span class="z-font-gray">软件工程师</span></td> 
             </tr> 
         </table> 
         </div>

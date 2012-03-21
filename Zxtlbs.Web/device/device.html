@@ -1,0 +1,96 @@
+﻿<div class="z-wrap">
+  <div id="z-zwgl-list-01" class="z-wrap-height">
+    <div class="z-search">
+      <div class="z-search-condition">
+        <div class="z-search-term-three">
+          <table class="z-search-box">
+            <thead>
+              <tr>
+              <td class="z-search-name">分组</td>
+                <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
+                    <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable" value="全部" />
+                    <input type="hidden" id="h-device" value="" />
+                    <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
+                    <div class="z-select-box1 z-box1" style="display:none">
+                    <div class="z-box-t"><span>&nbsp;</span></div>
+                    <div class="z-box-c">
+                        <div class="z-box-m">
+                            <div class="z-con" id="div-devicelist">
+                                <div>正在加载列表，请稍候…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="z-box-b"><span>&nbsp;</span></div>
+                    </div>
+                  </div></td>
+                <td class="z-search-name">搜索设备</td>
+                <td><span class="z-basic-input">
+                    <input type="text" class="z-basic-text" />
+                </span></td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查询</span></a></div>
+      </div>
+    </div>
+    <div class="z-line"></div>
+    <div id="z-zwgl-list">
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="wlist">
+	        <thead>
+		        <tr>
+			        <th width="10%">设备号码</th>
+			        <th width="14%">设备名称</th>
+			        <th width="10%">SIM卡号码</th>
+			        <th width="10%">设备类型</th>
+			        <th width="10%">设备型号</th>
+			        <th width="10%">所属分组</th>
+			        <th width="10%">司机</th>
+			        <th width="12%">安装日期</th>
+			        <th width="14%">最后定位时间</th>
+		        </tr>
+	        </thead>
+	        <tbody>
+	        </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#wlist').dataTable({
+            "bProcessing": true,
+            "bJQueryUI": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": false,
+            "iDisplayLength": 20,
+            "sPaginationType": "full_numbers"
+        });
+
+        $('#div-devicelist').load('devicelisthtml.ashx', function () {
+            zTree();
+            $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {
+                var _text = $(this).text();
+                var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
+                _obj.removeClass('z-basic-text-gray');
+                _obj.val(_text);
+                $("#h-device").val($(this).attr("id").replace("zxt-d-", ""));
+                $(this).parents('.z-select-box1').hide();
+            })
+        });
+    });
+
+    function chaxun() {
+//        var oTable = $('#wlist').dataTable();
+//        var oSettings = oTable.fnSettings();
+//        if (oSettings.oFeatures.bServerSide) {
+//            oSettings.sAjaxSource = "device/device.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
+//            oTable.fnPageChange(0);
+//        } else {
+//            oSettings.oFeatures.bServerSide = true;
+//            oSettings.sAjaxSource = "device/device.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
+//            oTable.fnDraw(oSettings);
+//        }
+    }
+</script>
