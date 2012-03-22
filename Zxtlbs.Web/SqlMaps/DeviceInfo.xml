@@ -12,13 +12,45 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
     <select id="GetDeviceListByGroup" resultClass="DeviceInfo" parameterClass="string">
       select * from device_info where belong_groupid = #belong_groupid#
     </select>
-    
+
     <select id="GetDeviceListByGroups" resultClass="DeviceInfo" parameterClass="string">
       select * from device_info where belong_groupid like #belong_groupid#
     </select>
 
+    <select id="GetDeviceTotalByGroups" resultClass="int" parameterClass="DeviceInfo">
+      select count(*) as total from device_info
+      <dynamic prepend="where">
+        <isNotEmpty prepend="and" property="DEVICE_NAME">
+          belong_groupid like '$BELONG_GROUPID$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="DEVICE_NAME">
+          (device_name like '%$DEVICE_NAME$%' or device_id like '%$DEVICE_NAME$%' or device_sim like '%$DEVICE_NAME$%')
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
     <select id="GetDeviceListWithStatusByGroups" resultClass="DeviceInfo" parameterClass="string">
       select a.*,b.cur_status,b.lon,b.lat from device_info a left join device_state b on a.device_id=b.device_id where a.belong_groupid like #belong_groupid#
+    </select>
+
+    <select id="GetDeviceListPage" resultClass="DeviceInfo" parameterClass="DeviceInfo">
+      select a.*,b.logintime,c.orgname as belong_groupname from
+      (select * from (select ROWNUM RN,T.* from (
+      select * from device_info
+      <dynamic prepend="where">
+        <isNotEmpty prepend="and" property="DEVICE_NAME">
+          belong_groupid like '$BELONG_GROUPID$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="DEVICE_NAME">
+          (device_name like '%$DEVICE_NAME$%' or device_id like '%$DEVICE_NAME$%' or device_sim like '%$DEVICE_NAME$%')
+        </isNotEmpty>
+      </dynamic>
+      <![CDATA[ 
+        order by install_date desc
+        ) T where ROWNUM<=#PageEnd#) where RN>#PageStart#) a
+        left join device_state b on a.device_id=b.device_id
+        left join zxt_base.aorg c on a.belong_groupid = c.orgid
+      ]]>
     </select>
   </statements>
 </sqlMap>

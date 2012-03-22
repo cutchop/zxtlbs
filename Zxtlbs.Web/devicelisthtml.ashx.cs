@@ -137,30 +137,6 @@ namespace Zxtlbs.Web
             return Mapper.Instance().QueryForList<DeviceInfo>("GetDeviceListByGroups", orgid + "%");
         }
 
-        private bool HasChildOrg(IList<AOrg> list, string orgid)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].PARENTID.Trim() == orgid.Trim())
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private bool HasChildDevice(IList<DeviceInfo> list, string orgid)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].BELONG_GROUPID.Trim() == orgid.Trim())
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public bool IsReusable
         {
             get

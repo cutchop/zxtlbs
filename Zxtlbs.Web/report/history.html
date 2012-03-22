@@ -66,7 +66,9 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        var dates = $("#datefrom,#dateto").datepicker({
+        var dates = $("#datefrom,#dateto").datepicker({            
+            minDate: -90,
+            maxDate: 0,
             onSelect: function (selectedDate) {
                 var option = this.id == "datefrom" ? "minDate" : "maxDate",
 				instance = $(this).data("datepicker"),

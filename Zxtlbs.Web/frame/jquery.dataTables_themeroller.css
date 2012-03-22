@@ -26,10 +26,13 @@ table.dataTable td {
 table.dataTable td.center,
 table.dataTable td.dataTables_empty {
 	text-align: center;
+	padding: 50px 0;
 }
 
 table.dataTable tr.odd { background-color: #E2E4FF; }
 table.dataTable tr.even { background-color: white; }
+table.dataTable tr.even.row_selected td {background-color: #B0BED9;}
+table.dataTable tr.odd.row_selected td {background-color: #9FAFD1;}
 
 table.dataTable tr.odd td.sorting_1 { background-color: #D3D6FF; }
 table.dataTable tr.odd td.sorting_2 { background-color: #DADCFF; }
@@ -206,6 +209,7 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 	color: #999;
 	font-size: 14px;
 	background-color: white;
+	z-index:2;
 }
 
 

@@ -9,13 +9,13 @@
               <td class="z-search-name">分组</td>
                 <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
                     <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable" value="全部" />
-                    <input type="hidden" id="h-device" value="" />
+                    <input type="hidden" id="h-group" value="" />
                     <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
                     <div class="z-select-box1 z-box1" style="display:none">
                     <div class="z-box-t"><span>&nbsp;</span></div>
                     <div class="z-box-c">
                         <div class="z-box-m">
-                            <div class="z-con" id="div-devicelist">
+                            <div class="z-con" id="div-grouplist">
                                 <div>正在加载列表，请稍候…</div>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                   </div></td>
                 <td class="z-search-name">搜索设备</td>
                 <td><span class="z-basic-input">
-                    <input type="text" class="z-basic-text" />
+                    <input id="dname" type="text" class="z-basic-text" />
                 </span></td>
               </tr>
             </thead>
@@ -36,11 +36,22 @@
     </div>
     <div class="z-line"></div>
     <div id="z-zwgl-list">
+        <div class="z-toolbar z-list-rowadd-top">
+          <div class="z-group">
+            <div class="z-btn" onclick="d_detail()"><a href="#" class="z-btn-oper"><span>详细</span></a></div>
+            <div class="z-btn" onclick="d_add()"><a href="#" class="z-btn-oper"><span>新增</span></a></div>
+            <div class="z-btn" onclick="d_edit()"><a href="#" class="z-btn-oper"><span>修改</span></a></div>
+            <div class="z-btn" onclick="d_del()"><a href="#" class="z-btn-oper"><span>删除</span></a></div>
+          </div>
+          <div class="z-group">
+            <div class="z-btn"><a href="#" class="z-btn-oper"><span>导出到Excel</span></a></div>
+          </div>
+        </div>
         <table cellpadding="0" cellspacing="0" border="0" class="display" id="wlist">
 	        <thead>
 		        <tr>
 			        <th width="10%">设备号码</th>
-			        <th width="14%">设备名称</th>
+			        <th width="10%">设备名称</th>
 			        <th width="10%">SIM卡号码</th>
 			        <th width="10%">设备类型</th>
 			        <th width="10%">设备型号</th>
@@ -57,40 +68,94 @@
   </div>
 </div>
 <script type="text/javascript">
+    var oTable;
+    var gaiSelected = [];
     $(function () {
-        $('#wlist').dataTable({
+        oTable = $('#wlist').dataTable({
             "bProcessing": true,
             "bJQueryUI": true,
             "bLengthChange": false,
             "bFilter": false,
             "bSort": false,
             "iDisplayLength": 20,
-            "sPaginationType": "full_numbers"
+            "bServerSide": true,
+            "sAjaxSource": "device/device.ashx",
+            "sPaginationType": "full_numbers",
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                if (jQuery.inArray(aData[0], gaiSelected) != -1) {
+                    $(nRow).addClass('row_selected');
+                }
+                return nRow;
+            }
+        });
+        $('#wlist tbody tr').live('click', function () {
+            var aData = oTable.fnGetData(this);
+            var iId = aData[0];
+
+            if (jQuery.inArray(iId, gaiSelected) == -1) {
+                gaiSelected[gaiSelected.length++] = iId;
+            }
+            else {
+                gaiSelected = jQuery.grep(gaiSelected, function (value) {
+                    return value != iId;
+                });
+            }
+            $(this).toggleClass('row_selected');
         });
 
-        $('#div-devicelist').load('devicelisthtml.ashx', function () {
+        $('#div-grouplist').load('grouplisthtml.ashx', function () {
             zTree();
             $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {
                 var _text = $(this).text();
                 var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
                 _obj.removeClass('z-basic-text-gray');
                 _obj.val(_text);
-                $("#h-device").val($(this).attr("id").replace("zxt-d-", ""));
+                $("#h-group").val($(this).attr("id").replace("zxt-g-", ""));
                 $(this).parents('.z-select-box1').hide();
             })
         });
     });
 
     function chaxun() {
-//        var oTable = $('#wlist').dataTable();
-//        var oSettings = oTable.fnSettings();
-//        if (oSettings.oFeatures.bServerSide) {
-//            oSettings.sAjaxSource = "device/device.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
-//            oTable.fnPageChange(0);
-//        } else {
-//            oSettings.oFeatures.bServerSide = true;
-//            oSettings.sAjaxSource = "device/device.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
-//            oTable.fnDraw(oSettings);
-//        }
+        var oTable = $('#wlist').dataTable();
+        var oSettings = oTable.fnSettings();
+        oSettings.sAjaxSource = "device/device.ashx?name=" + $("#dname").val() + "&groupid=" + $("#h-group").val();
+        oTable.fnPageChange(0);
+    }
+    function d_detail() {
+        if (gaiSelected.length == 0) {
+            $.Zebra_Dialog("请选择一个设备");
+            return;
+        } else if (gaiSelected.length > 1) {
+            $.Zebra_Dialog("只能选择一个设备");
+            return;
+        }
+    }
+    function d_add() {
+        if (gaiSelected.length == 0) {
+            $.Zebra_Dialog("请选择一个设备");
+            return;
+        } else if (gaiSelected.length > 1) {
+            $.Zebra_Dialog("只能选择一个设备");
+            return;
+        }
+    }
+    function d_edit() {
+        if (gaiSelected.length == 0) {
+            $.Zebra_Dialog("请选择一个设备");
+            return;
+        } else if (gaiSelected.length > 1) {
+            $.Zebra_Dialog("只能选择一个设备");
+            return;
+        }
+    }
+    function d_del() {
+        if (gaiSelected.length == 0) {
+            $.Zebra_Dialog("请选择一个设备");
+            return;
+        } else if (gaiSelected.length > 1) {
+            $.Zebra_Dialog("只能选择一个设备");
+            return;
+        }
     }
 </script>

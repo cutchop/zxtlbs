@@ -16,7 +16,8 @@ namespace Zxtlbs.Model
 		private string _device_sim;
 		private string _device_type;
 		private decimal? _ico_num;
-		private string _belong_groupid;
+        private string _belong_groupid;
+        private string _belong_groupname;
 		private string _com_mode;
 		private DateTime? _install_date;
 		private decimal? _initial_course;
@@ -34,6 +35,7 @@ namespace Zxtlbs.Model
         private decimal? _lon;
         private decimal? _lat;
         private string _cur_status;
+        private DateTime? _logintime;
 		/// <summary>
 		/// 记录ID
 		/// </summary>
@@ -98,6 +100,14 @@ namespace Zxtlbs.Model
 			set{ _belong_groupid=value;}
 			get{return _belong_groupid;}
 		}
+        /// <summary>
+        /// 所属组名称
+        /// </summary>
+        public string BELONG_GROUPNAME
+        {
+            set { _belong_groupname = value; }
+            get { return _belong_groupname; }
+        }
 		/// <summary>
 		/// 通讯模式(GPRS、CDMA)
 		/// </summary>
@@ -233,6 +243,14 @@ namespace Zxtlbs.Model
         {
             set { _cur_status = value; }
             get { return _cur_status; }
+        }
+        /// <summary>
+        /// 安装日期
+        /// </summary>
+        public DateTime? LOGINTIME
+        {
+            set { _logintime = value; }
+            get { return _logintime; }
         }
 		#endregion Model
 

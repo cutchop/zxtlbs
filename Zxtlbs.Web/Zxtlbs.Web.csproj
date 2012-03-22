@@ -125,6 +125,9 @@
     <Compile Include="device\device.ashx.cs">
       <DependentUpon>device.ashx</DependentUpon>
     </Compile>
+    <Compile Include="grouplisthtml.ashx.cs">
+      <DependentUpon>grouplisthtml.ashx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -797,6 +800,7 @@
     <Content Include="report\history.ashx" />
     <Content Include="map\mapleft.ashx" />
     <Content Include="map\history.ashx" />
+    <Content Include="grouplisthtml.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
