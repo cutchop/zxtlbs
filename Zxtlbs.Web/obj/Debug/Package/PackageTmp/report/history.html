@@ -1,0 +1,122 @@
+﻿<div class="z-wrap">
+  <div id="z-zwgl-list-01" class="z-wrap-height">
+    <div class="z-search">
+      <div class="z-search-condition">
+        <div class="z-search-term-three">
+          <table class="z-search-box">
+            <thead>
+              <tr>
+              <td class="z-search-name">选择设备</td>
+                <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
+                    <input type="text" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
+                    <input type="hidden" id="h-device" value="" />
+                    <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
+                    <div class="z-select-box1 z-box1" style="display:none">
+                    <div class="z-box-t"><span>&nbsp;</span></div>
+                    <div class="z-box-c">
+                        <div class="z-box-m">
+                            <div class="z-con" id="div-devicelist">
+                                <div>正在加载列表，请稍候…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="z-box-b"><span>&nbsp;</span></div>
+                    </div>
+                  </div></td>
+                <td class="z-search-name">选择日期</td>
+                <td><div class="z-basic-time-part-wrap">
+                    <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
+                      <input id="datefrom" type="text" class="z-basic-text z-basic-text-disable" />
+                      <a class="z-btn-trigger" href="javascript:document.getElementById('datefrom').focus();"></a></span>
+                    </div>
+                    <div class="z-basic-to">至</div>
+                    <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
+                      <input id="dateto" type="text" class="z-basic-text z-basic-text-disable" />
+                      <a class="z-btn-trigger" href="javascript:document.getElementById('dateto').focus();"></a></span>
+                    </div>
+                  </div></td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查询</span></a></div>
+      </div>
+    </div>
+    <div class="z-line"></div>
+    <div id="z-zwgl-list">
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="wlist">
+	        <thead>
+		        <tr>
+			        <th width="10%">设备号码</th>
+			        <th width="13%">设备名称</th>
+			        <th width="16%">上传时间</th>
+			        <th width="7%">状态</th>
+			        <th width="7%">速度</th>
+			        <th width="7%">方向</th>
+			        <th width="8%">里程</th>
+			        <th width="15%">经纬度</th>
+			        <th width="17%">位置</th>
+		        </tr>
+	        </thead>
+	        <tbody>
+	        </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var dates = $("#datefrom,#dateto").datepicker({            
+            minDate: -90,
+            maxDate: 0,
+            onSelect: function (selectedDate) {
+                var option = this.id == "datefrom" ? "minDate" : "maxDate",
+				instance = $(this).data("datepicker"),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings);
+                dates.not(this).datepicker("option", option, date);
+            }
+        });
+        $("#datefrom,#dateto").val(todaystring());
+        $('#wlist').dataTable({
+            "bProcessing": true,
+            "bJQueryUI": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": false,
+            "iDisplayLength": 20,
+            "sPaginationType": "full_numbers"
+        });
+
+        $('#div-devicelist').load('devicelisthtml.ashx', function () {
+            zTree();
+            $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {
+                var _text = $(this).text();
+                var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
+                _obj.removeClass('z-basic-text-gray');
+                _obj.val(_text);
+                $("#h-device").val($(this).attr("id").replace("zxt-d-",""));
+                $(this).parents('.z-select-box1').hide();
+            })
+        });
+    });
+
+    function chaxun() {
+        if ($("#h-device").val() == "") {
+            $.Zebra_Dialog('请选择一个设备');
+            return false;
+        }
+        var oTable = $('#wlist').dataTable();
+        var oSettings = oTable.fnSettings();
+        if (oSettings.oFeatures.bServerSide) {
+            oSettings.sAjaxSource = "report/history.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
+            oTable.fnPageChange(0);
+        } else {
+            oSettings.oFeatures.bServerSide = true;
+            oSettings.sAjaxSource = "report/history.ashx?device_id=" + $("#h-device").val() + "&d1=" + $("#datefrom").val() + "&d2=" + $("#dateto").val();
+            oTable.fnDraw(oSettings);
+        }
+    }
+</script>

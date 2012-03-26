@@ -1,0 +1,243 @@
+﻿<div class="z-wrap">
+  <div id="z-zwgl-list-01" class="z-wrap-height">
+    <div class="z-search">
+      <div class="z-search-condition">
+        <div class="z-search-term-three">
+          <table class="z-search-box">
+            <thead>
+              <tr>
+                <td class="z-search-name">搜索单位</td>
+                <td><span class="z-basic-input"><input id="s-orgname" type="text" class="z-basic-text" /></span></td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查询</span></a></div>
+      </div>
+    </div>
+    <div class="z-line"></div>
+    <div id="z-zwgl-list">
+        <div class="z-toolbar z-list-rowadd-top">
+          <div class="z-group">
+            <div class="z-btn" onclick="g_add()"><a href="#" class="z-btn-oper"><span>新增</span></a></div>
+            <div class="z-btn" onclick="g_edit()"><a href="#" class="z-btn-oper"><span>修改</span></a></div>
+            <div class="z-btn" onclick="g_del()"><a href="#" class="z-btn-oper"><span>删除</span></a></div>
+          </div>
+          <div class="z-group">
+            <div class="z-btn"><a href="#" class="z-btn-oper"><span>导出到Excel</span></a></div>
+          </div>
+        </div>
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="wlist">
+	        <thead>
+		        <tr>
+			        <th>no</th>
+			        <th width="20%">分组名称</th>
+			        <th width="20%">隶属于</th>
+			        <th width="60%">备注</th>
+			        <th>orgid</th>
+			        <th>parentid</th>
+		        </tr>
+	        </thead>
+	        <tbody>
+	        </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<div id="pop_group_edit" class="z-window x-window-fixed" style="display:none;">
+    <input type="hidden" id="edit-type" value="a" />
+    <div class="z-window-tl"><div class="z-window-tr"><div class="z-window-tc"> 
+        <div class="z-window-tools"><a href="#" onclick="closePopup(this)" class="z-close"></a></div> 
+        <h2 id="pop-group-edit-title">新增分组</h2> 
+    </div></div></div> 
+    <div class="z-window-ml"><div class="z-window-mr"><div class="z-window-mc">
+        <div class="z-window-content">
+        <div class="clearfl">
+        <div class="fl">
+        <table class="z-window-form">
+            <tr id="tr_parent"> 
+              <td class="label">隶属于</td> 
+              <td class="space"><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
+                    <input id="f-parentname" type="text" readonly="readonly" class="z-basic-text z-basic-text-disable" value="请选择" />
+                    <input type="hidden" id="f-parentid" value="" />
+                    <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
+                    <div class="z-select-box1 z-box1" style="display:none">
+                    <div class="z-box-t"><span>&nbsp;</span></div>
+                    <div class="z-box-c">
+                        <div class="z-box-m">
+                            <div class="z-con" id="div-grouplist-edit">
+                                <div>正在加载列表，请稍候…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="z-box-b"><span>&nbsp;</span></div>
+                    </div>
+                  </div></td> 
+            </tr>
+            <tr> 
+              <td class="label">分组名称<span class="required">*</span><input id="f-orgid" type="hidden" /></td> 
+              <td class="space"><span class="z-basic-input"><input id="f-orgname" type="text" class="z-basic-text" /></span></td> 
+            </tr>
+            <tr> 
+              <td class="label">备注</td> 
+              <td class="space"><span class="z-basic-input"> 
+                <input id="f-remark" type="text" class="z-basic-text" /> 
+                </span></td> 
+            </tr>
+        </table> 
+        </div>
+        </div>
+        </div>
+        <div class="z-window-bbar"> 
+            <div class="z-btn"><a href="#" onclick="formsumbit(this)" class="z-btn-blue"><span>确定</span></a></div> 
+            <div class="z-btn"><a href="#" onclick="closePopup(this)" class="z-btn-gray"><span>取消</span></a></div> 
+        </div> 
+    </div></div></div>
+    <div class="z-window-bl"><div class="z-window-br"><div class="z-window-bc"></div></div></div> 
+</div>
+<script type="text/javascript">
+    var oTable;
+    var gaiSelected = [];
+    $(function () {
+        $('.popUp').each(function () { if ($(this).attr('id') == "pop_group_edit") { $(this).remove(); } }); //删除之前的弹出框
+        oTable = $('#wlist').dataTable({
+            "bProcessing": true,
+            "bJQueryUI": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": false,
+            "iDisplayLength": 20,
+            "bServerSide": true,
+            "sAjaxSource": "setting/group.ashx",
+            "sPaginationType": "full_numbers",
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0,4,5] }],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                if (jQuery.inArray(aData[0], gaiSelected) != -1) {
+                    $(nRow).addClass('row_selected');
+                }
+                return nRow;
+            }
+        });
+        $('#wlist tbody tr').die().live('click', function () {
+            var aData = oTable.fnGetData(this);
+            var iId = aData[0];
+
+            if (jQuery.inArray(iId, gaiSelected) == -1) {
+                gaiSelected[gaiSelected.length++] = iId;
+            }
+            else {
+                gaiSelected = jQuery.grep(gaiSelected, function (value) {
+                    return value != iId;
+                });
+            }
+            $(this).toggleClass('row_selected');
+        });
+
+        $('#div-grouplist-edit').load('grouplisthtml.ashx', function () {
+            zTree();
+            $('#div-grouplist-edit .z-tree-leaf a').unbind('click');
+            $('#div-grouplist-edit .z-tree-leaf a').click(function () {
+                var _text = $(this).text();
+                var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
+                _obj.removeClass('z-basic-text-gray');
+                _obj.val(_text);
+                $("#f-parentid").val($(this).attr("id").replace("zxt-g-", ""));
+                $(this).parents('.z-select-box1').hide();
+            })
+            $('#f-parentname').val($('#div-grouplist-edit .z-tree-leaf:first a').text());
+            $("#f-parentid").val($('#div-grouplist-edit .z-tree-leaf:first a').attr("id").replace("zxt-g-", ""));
+        });
+    });
+
+    function chaxun() {
+        var oTable = $('#wlist').dataTable();
+        var oSettings = oTable.fnSettings();
+        oSettings.sAjaxSource = "setting/group.ashx?name=" + $("#s-orgname").val();
+        oTable.fnPageChange(0);
+    }
+
+    function g_add() {
+        popupBody('#pop_group_edit');
+        $('#pop-group-edit-title').text('新增分组');
+        $('#edit-type').val("a");
+        $('#tr_parent').css("display", "");
+    }
+    function g_edit() {
+        if (gaiSelected.length == 0) {
+            $.Zebra_Dialog("请选择一个分组");
+            return;
+        } else if (gaiSelected.length > 1) {
+            $.Zebra_Dialog("只能选择一个分组");
+            return;
+        }
+        popupBody('#pop_group_edit');
+        $('#pop-group-edit-title').text('修改分组信息');
+        $('#edit-type').val("e");
+        $('#tr_parent').css("display", "none");
+        var selectIndex = gaiSelected[0];
+        $('#f-orgid').val(oTable.fnGetData()[selectIndex][4]);
+        $('#f-orgname').val(oTable.fnGetData()[selectIndex][1]);
+        $('#f-parentname').val(oTable.fnGetData()[selectIndex][2]);
+        $('#f-parentid').val(oTable.fnGetData()[selectIndex][5]);
+        $('#f-remark').val(oTable.fnGetData()[selectIndex][3]);
+    }
+    function g_del() {
+        if (gaiSelected.length == 0) {
+            $.Zebra_Dialog("请选择一个分组");
+            return;
+        } else if (gaiSelected.length > 1) {
+            $.Zebra_Dialog("只能选择一个分组");
+            return;
+        }
+        $.Zebra_Dialog("确定删除该分组？", {
+            'type': 'question',
+            'buttons': ['确定', '取消'],
+            'onClose': function (caption) {
+                if (caption == "确定") {
+                    $.post("setting/group.ashx?action=d", { orgid: oTable.fnGetData()[gaiSelected[0]][4] }, function (result) {
+                        if (result == "success") {
+                            new $.Zebra_Dialog("删除成功", {
+                                'buttons': false,
+                                'modal': false,
+                                'auto_close': 2000
+                            });
+                            chaxun(); //重新查询
+                        } else {
+                            $.Zebra_Dialog(result);
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function formsumbit(obj) {
+        var orgname = $.trim($('#f-orgname').val());
+        if (orgname == "") {
+            $.Zebra_Dialog("请填写分组名称");
+            return;
+        }
+        var orgid = $('#f-orgid').val();
+        var parentid = $('#f-parentid').val();
+        var remark = $('#f-remark').val();
+        $.post("setting/group.ashx", {
+            action: $('#edit-type').val(),
+            orgid: orgid,
+            orgname: orgname,
+            parentid: parentid,
+            remark: remark
+        }, function (result) {
+            if (result == "success") {
+                closePopup(obj);
+                new $.Zebra_Dialog($('#pop-group-edit-title').text() + "操作成功", {
+                    'buttons': false,
+                    'modal': false,
+                    //'position': ['right - 80', 'top + 80'],
+                    'auto_close': 2000
+                });
+                chaxun();//重新查询
+            } else {
+                $.Zebra_Dialog(result);
+            }
+        });
+    }
+</script>

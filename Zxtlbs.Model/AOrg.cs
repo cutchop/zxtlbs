@@ -10,7 +10,8 @@ namespace Zxtlbs.Model
 		{}
 		#region Model
 		private string _orgid;
-		private string _parentid;
+        private string _parentid;
+        private string _parentname;
 		private string _orgname;
 		private string _orgtype;
 		private decimal? _orglevel;
@@ -36,6 +37,14 @@ namespace Zxtlbs.Model
 			set{ _parentid=value;}
 			get{return _parentid;}
 		}
+        /// <summary>
+        /// 父节点名称
+        /// </summary>
+        public string PARENTNAME
+        {
+            set { _parentname = value; }
+            get { return _parentname; }
+        }
 		/// <summary>
 		/// 机构名称
 		/// </summary>

@@ -108,6 +108,8 @@
     <Content Include="objects.txt" />
     <Content Include="report\history.html" />
     <Content Include="report\index.html" />
+    <Content Include="setting\group.html" />
+    <Content Include="setting\index.html" />
     <Content Include="SqlMaps\DeviceHisTrack.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -151,6 +153,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="report\history.ashx.cs">
       <DependentUpon>history.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="setting\group.ashx.cs">
+      <DependentUpon>group.ashx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -801,6 +806,7 @@
     <Content Include="map\mapleft.ashx" />
     <Content Include="map\history.ashx" />
     <Content Include="grouplisthtml.ashx" />
+    <Content Include="setting\group.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
