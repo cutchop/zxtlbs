@@ -46,7 +46,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
         </isNotEmpty>
       </dynamic>
       <![CDATA[ 
-        order by install_date desc
+        order by install_date desc,device_name asc
         ) T where ROWNUM<=#PageEnd#) where RN>#PageStart#) a
         left join device_state b on a.device_id=b.device_id
         left join zxt_base.aorg c on a.belong_groupid = c.orgid

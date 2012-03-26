@@ -589,7 +589,8 @@ function zformSingleSelect(){
 }
 /* 结构树 */
 function zTree(){
-	/*$('.z-tree-active').css({'background-color':'red','background-position':'0'});*/
+    /*$('.z-tree-active').css({'background-color':'red','background-position':'0'});*/
+    $('.z-tree-li a').unbind('click');
     $('.z-tree-li a').click(function(event){
 		var _this = $(this);
 		var _bg = _this.parents('.z-tree').find('.z-tree-bg');

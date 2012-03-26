@@ -790,7 +790,7 @@ p.z-font-hwxk{color:#333;}
 .z-basic-checkbox{margin-right:2px;vertical-align:middle;}
 .z-basic-check-wrap label.last{margin-right:0;}
 /** 文本输入框 **/
-.z-basic-input{background:url(images/basic/z-basic-input.png) no-repeat 100% -25px;float:left;height:20px;line-height:20px;display:inline;padding:0 5px 0 0;}
+.z-basic-input{background:url(images/basic/z-basic-input.png) no-repeat 100% -25px;float:left;height:20px;line-height:18px;display:inline;padding:0 5px 0 0;}
 .z-basic-input .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 0;height:20px;border:0;width:190px;padding-left:5px;}
 .z-basic-input-hover{background:url(images/basic/z-basic-input.png) no-repeat 100% -100px;}
 .z-basic-input-hover .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 -75px;}
