@@ -409,7 +409,8 @@ a.z-icon-save{background:url(images/icon/z-icon-option.png) -1px 0 no-repeat;pad
 .z-window-group .title {background:#ebebec url(images/window/z-window-group.gif) repeat-y 0 0;height:25px;line-height:25px;margin-bottom:10px;}
 .z-window-group .title span {padding-left:8px;font-weight:bold;}
 .z-window-form td.label{width:95px;text-align:right;padding:4px 14px 5px 0;/*vertical-align:top;*/}
-.z-window-form td{position:relative;padding:5px 0 5px 0;}
+/*.z-window-form td{position:relative;padding:5px 0 5px 0;}*/
+.z-window-form td{padding:5px 0 5px 0;}
 .z-window-form td input {vertical-align:middle;}
 .z-window-form td.space{padding-right:10px;}
 .z-window-form td span.required{ position:relative;color:#dd392c;top:2px;right:-9px;margin-left:-4px;}
@@ -790,7 +791,7 @@ p.z-font-hwxk{color:#333;}
 .z-basic-checkbox{margin-right:2px;vertical-align:middle;}
 .z-basic-check-wrap label.last{margin-right:0;}
 /** 文本输入框 **/
-.z-basic-input{background:url(images/basic/z-basic-input.png) no-repeat 100% -25px;float:left;height:20px;line-height:18px;display:inline;padding:0 5px 0 0;}
+.z-basic-input{background:url(images/basic/z-basic-input.png) no-repeat 100% -25px;float:left;height:20px;display:inline;padding:0 5px 0 0;}
 .z-basic-input .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 0;height:20px;border:0;width:190px;padding-left:5px;}
 .z-basic-input-hover{background:url(images/basic/z-basic-input.png) no-repeat 100% -100px;}
 .z-basic-input-hover .z-basic-text{background:url(images/basic/z-basic-input.png) no-repeat 0 -75px;}

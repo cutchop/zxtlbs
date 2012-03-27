@@ -21,8 +21,9 @@
     /**全局初始化**/
     var map,infowindow,trafficLayer;
     var dlat = 30.556, dlng = 114.327;
-	var markerArray = [];
-    function zdevice(id,name,lat,lng,sim,status){
+    var markerArray = [];
+    var timer;
+    function zdevice(id,name,lat,lng,sim,status,group){
         this.id = id;
         this.name = name;
         this.lat = lat;
@@ -32,11 +33,12 @@
         this.speed = "正在读取";
         this.direction = "正在读取";
         this.logintime = "正在读取";
-        this.group = "正在读取";
+        this.group = group;
         this.licheng = "正在读取";
-        this.content = '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
+        this.getContent = function() {
+            return '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
                     + this.name
-                    + '</div><div>所属单位:'
+                    + '</div><div>所属分组:'
                     + this.group
                     + '</div><div>设备号码:'
                     + this.id
@@ -46,17 +48,18 @@
                     + this.status
                     + '</div><div>速度:'
                     + this.speed
-                    + '</div><div>方向:'
+                    + ' km/h</div><div>方向:'
                     + this.direction
                     + '</div><div>总里程:'
                     + this.licheng
-                    + '</div><div>经纬度:'
+                    + ' km</div><div>经纬度:'
                     + this.lng + '°E,' + this.lat + '°N'
                     + '</div><div>定位时间:'
                     + this.logintime
                     + '</div><br /><div><a href="javascript:_t_d_id=\'' + this.id + '\';_t_d_name=\'' + this.name + '\';ajaxloading(\'history\',\'map/history.html\',\'历史轨迹\');">[历史轨迹]</a>'
                     + '&nbsp;<a href="#">[单独监控]</a>&nbsp;<a href="javascript:mremove(\'' + this.id + '\');">[从地图上去除]</a>'
                     + '&nbsp;<a href="javascript:closeInfo();">[关闭]</a></div></div>';
+        }
     }
     function zmarker(id, marker, device) {
         this.id = id;
@@ -123,6 +126,34 @@
             map.setCenter(new google.maps.LatLng(dlat, dlng));
         }
     }
+    function refresh() {
+        if ($('#div-devicelist')) {
+            $.getJSON('devicestatus.ashx', function (data) {
+                $.each(data, function (i, field) {
+                    if ($("#zxt-d-" + field[0])) {
+                        var _text = $("#zxt-d-" + field[0]).text();
+                        _text = _text.substring(0, _text.lastIndexOf('['));
+                        $("#zxt-d-" + field[0]).html(_text + '[' + field[2] + ']<input type="hidden" value="' + field[6] + ',' + field[7] + '" />');
+                    }
+                    if (markerArray[field[0]]) {
+                        if (markerArray[field[0]].device.logintime != field[1]) {
+                            markerArray[field[0]].device.logintime = field[1];
+                            markerArray[field[0]].device.status = field[2];
+                            markerArray[field[0]].device.speed = field[3];
+                            markerArray[field[0]].device.direction = field[4];
+                            markerArray[field[0]].device.licheng = field[5];
+                            markerArray[field[0]].device.lng = field[6];
+                            markerArray[field[0]].device.lat = field[7];
+                            markerArray[field[0]].marker.setPosition(new google.maps.LatLng(field[7], field[6]));
+                        }
+                    }
+                });
+            });
+            timer = setTimeout("refresh()", 30 * 1000);
+        } else {
+            clearTimeout(timer);
+        }
+    }
     /**列表初始化**/
     function loadlist() {
         $('#div-devicelist').html('<div id="loadinfo" style="text-align:center;margin-top:200px;">正在加载设备列表，请稍候…</div>');
@@ -132,7 +163,7 @@
                 $("#device-search").focus(function () {
                     if ($(this).val() == "搜索设备号码或名称") {
                         $(this).val("");
-                        $(this).css("color","#333");
+                        $(this).css("color", "#333");
                     }
                 });
                 $("#device-search").blur(function () {
@@ -158,15 +189,16 @@
                     var _name = _text.substring(0, _text.lastIndexOf('['));
                     var _status = _text.substring(_text.lastIndexOf('[') + 1).replace("]", "");
                     var _id = $(this).attr("id").replace("zxt-d-", "");
-                    var _lon = _id.split('|')[1].split(',')[0];
-                    var _lat = _id.split('|')[1].split(',')[1];
-                    _id = _id.split('|')[0];
+                    var _lon = $(this).children().val().split(',')[0];
+                    var _lat = $(this).children().val().split(',')[1];
+                    var _group = $(this).parent().parent().prev().text();
                     if (markerArray[_id]) {
                         mshow(_id);
                     } else {
-                        madd(new zdevice(_id, _name, _lat, _lon, _id, _status));
+                        madd(new zdevice(_id, _name, _lat, _lon, _id, _status, _group));
                     }
                 });
+                timer = setTimeout("refresh()", 30 * 1000);//刷新
             } else {
                 $("#loadinfo").html("加载失败，请<a href=\"javascript:loadlist();\">重试</a>");
             }
@@ -194,12 +226,26 @@
         markerArray.push(new zmarker(device.id, marker, device));
         markerArray[markerArray[markerArray.length - 1].id] = markerArray[markerArray.length - 1];
 	    google.maps.event.addListener(marker, 'click', function (event) {
-	        infowindow.setContent(markerArray[marker.id].device.content);
+	        infowindow.setContent(markerArray[marker.id].device.getContent());
 	        infowindow.open(map, marker);
 	    });
 	    map.setCenter(latlng);
-	    infowindow.setContent(device.content);
+	    infowindow.setContent(device.getContent());
 	    infowindow.open(map, marker);
+	    $.getJSON('devicestatus.ashx', { device_id: device.id }, function (data) {
+	        if (data.length > 0) {
+	            if (markerArray[data[0][0]]) {
+	                markerArray[data[0][0]].device.logintime = data[0][1];
+	                markerArray[data[0][0]].device.status = data[0][2];
+	                markerArray[data[0][0]].device.speed = data[0][3];
+	                markerArray[data[0][0]].device.direction = data[0][4];
+	                markerArray[data[0][0]].device.licheng = data[0][5];
+	                markerArray[data[0][0]].device.lng = data[0][6];
+	                markerArray[data[0][0]].device.lat = data[0][7];
+	                mshow(data[0][0]);
+	            }
+	        }
+	    });
 	}
 
 	function mremove(id) {
@@ -211,7 +257,7 @@
 
     function mshow(id){
 	    map.setCenter(markerArray[id].marker.position);
-	    infowindow.setContent(markerArray[id].device.content);
+	    infowindow.setContent(markerArray[id].device.getContent());
 	    infowindow.open(map, markerArray[id].marker);
 	}
 

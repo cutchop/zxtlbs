@@ -57,7 +57,7 @@ namespace Zxtlbs.Web
                                         {
                                             if (listDevice[m].BELONG_GROUPID.Trim() == listOrg[l].ORGID.Trim())
                                             {
-                                                html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}|{3},{4}\">{1} [{2}]</a></li>", listDevice[m].DEVICE_ID, listDevice[m].DEVICE_NAME, listDevice[m].CUR_STATUS, listDevice[m].LON, listDevice[m].LAT, ColorClass(listDevice[m].CUR_STATUS));
+                                                html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}\">{1} [{2}]<input type=\"hidden\" value=\"{3},{4}\" /></a></li>", listDevice[m].DEVICE_ID, listDevice[m].DEVICE_NAME, listDevice[m].CUR_STATUS, listDevice[m].LON, listDevice[m].LAT, ColorClass(listDevice[m].CUR_STATUS));
                                                 listDevice.RemoveAt(m);
                                                 m--;
                                             }
@@ -70,7 +70,7 @@ namespace Zxtlbs.Web
                                 {
                                     if (listDevice[l].BELONG_GROUPID.Trim() == listOrg[k].ORGID.Trim())
                                     {
-                                        html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}|{3},{4}\">{1} [{2}]</a></li>", listDevice[l].DEVICE_ID, listDevice[l].DEVICE_NAME, listDevice[l].CUR_STATUS, listDevice[l].LON, listDevice[l].LAT, ColorClass(listDevice[l].CUR_STATUS));
+                                        html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}\">{1} [{2}]<input type=\"hidden\" value=\"{3},{4}\" /></a></li>", listDevice[l].DEVICE_ID, listDevice[l].DEVICE_NAME, listDevice[l].CUR_STATUS, listDevice[l].LON, listDevice[l].LAT, ColorClass(listDevice[l].CUR_STATUS));
                                         listDevice.RemoveAt(l);
                                         l--;
                                     }
@@ -85,7 +85,7 @@ namespace Zxtlbs.Web
                         {
                             if (listDevice[k].BELONG_GROUPID.Trim() == listOrg[j].ORGID.Trim())
                             {
-                                html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}|{3},{4}\">{1} [{2}]</a></li>", listDevice[k].DEVICE_ID, listDevice[k].DEVICE_NAME, listDevice[k].CUR_STATUS, listDevice[k].LON, listDevice[k].LAT, ColorClass(listDevice[k].CUR_STATUS));
+                                html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}\">{1} [{2}]<input type=\"hidden\" value=\"{3},{4}\" /></a></li>", listDevice[k].DEVICE_ID, listDevice[k].DEVICE_NAME, listDevice[k].CUR_STATUS, listDevice[k].LON, listDevice[k].LAT, ColorClass(listDevice[k].CUR_STATUS));
                                 listDevice.RemoveAt(k);
                                 k--;
                             }
@@ -100,7 +100,7 @@ namespace Zxtlbs.Web
                 {
                     if (listDevice[j].BELONG_GROUPID.Trim() == listOrg[i].ORGID.Trim())
                     {
-                        html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}|{3},{4}\">{1} [{2}]</a></li>", listDevice[j].DEVICE_ID, listDevice[j].DEVICE_NAME, listDevice[j].CUR_STATUS, listDevice[j].LON, listDevice[j].LAT, ColorClass(listDevice[j].CUR_STATUS));
+                        html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}\">{1} [{2}]<input type=\"hidden\" value=\"{3},{4}\" /></a></li>", listDevice[j].DEVICE_ID, listDevice[j].DEVICE_NAME, listDevice[j].CUR_STATUS, listDevice[j].LON, listDevice[j].LAT, ColorClass(listDevice[j].CUR_STATUS));
                         listDevice.RemoveAt(j);
                         j--;
                     }
@@ -114,7 +114,7 @@ namespace Zxtlbs.Web
             {
                 if (listDevice[i].BELONG_GROUPID.Trim() == listOrg[0].ORGID.Trim())
                 {
-                    html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}|{3},{4}\">{1} [{2}]</a></li>", listDevice[i].DEVICE_ID, listDevice[i].DEVICE_NAME, listDevice[i].CUR_STATUS, listDevice[i].LON, listDevice[i].LAT, ColorClass(listDevice[i].CUR_STATUS));
+                    html.AppendFormat("<li class=\"z-tree-li z-tree-leaf\"><a class=\"zxt-d-s-{5}\" href=\"#\" id=\"zxt-d-{0}\">{1} [{2}]<input type=\"hidden\" value=\"{3},{4}\" /></a></li>", listDevice[i].DEVICE_ID, listDevice[i].DEVICE_NAME, listDevice[i].CUR_STATUS, listDevice[i].LON, listDevice[i].LAT, ColorClass(listDevice[i].CUR_STATUS));
                     listDevice.RemoveAt(i);
                     i--;
                 }

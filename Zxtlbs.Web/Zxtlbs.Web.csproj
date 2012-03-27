@@ -73,8 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="common\images\pm\yy-region-tips-t.png" />
-    <Content Include="devicelist.js" />
-    <Content Include="devicelist.ashx" />
     <Content Include="device\device.html" />
     <Content Include="device\index.html" />
     <Content Include="frame\dialog\confirmation.png" />
@@ -104,25 +102,28 @@
     <Content Include="frame\jquery.dataTables.css" />
     <Content Include="frame\jquery.dataTables_themeroller.css" />
     <Content Include="frame\dialog\zebra_dialog.js" />
+    <Content Include="login.html" />
     <Content Include="map\history.html" />
-    <Content Include="objects.txt" />
     <Content Include="report\history.html" />
     <Content Include="report\index.html" />
     <Content Include="setting\group.html" />
     <Content Include="setting\index.html" />
+    <Content Include="single.aspx" />
     <Content Include="SqlMaps\DeviceHisTrack.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SqlMaps\AOrg.xml" />
+    <Content Include="SqlMaps\DeviceState.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="devicelist.ashx.cs">
-      <DependentUpon>devicelist.ashx</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="devicelisthtml.ashx.cs">
       <DependentUpon>devicelisthtml.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="devicestatus.ashx.cs">
+      <DependentUpon>devicestatus.ashx</DependentUpon>
     </Compile>
     <Compile Include="device\device.ashx.cs">
       <DependentUpon>device.ashx</DependentUpon>
@@ -137,13 +138,6 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="map\history.ashx.cs">
       <DependentUpon>history.ashx</DependentUpon>
     </Compile>
@@ -156,6 +150,13 @@
     </Compile>
     <Compile Include="setting\group.ashx.cs">
       <DependentUpon>group.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="single.aspx.cs">
+      <DependentUpon>single.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="single.aspx.designer.cs">
+      <DependentUpon>single.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -666,10 +667,11 @@
     <Content Include="frame\login\login.png" />
     <Content Include="frame\login\logo.gif" />
     <Content Include="index.aspx" />
-    <Content Include="login.aspx" />
     <Content Include="map\map.html" />
     <Content Include="SqlMap.config" />
-    <Content Include="SqlMaps\DeviceInfo.xml" />
+    <Content Include="SqlMaps\DeviceInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="common\CVS\Entries" />
@@ -778,6 +780,7 @@
     <None Include="common\images\workflow\CVS\Root" />
     <Content Include="devicelisthtml.ashx" />
     <Content Include="device\device.ashx" />
+    <Content Include="devicestatus.ashx" />
     <None Include="frame\CVS\Entries" />
     <None Include="frame\CVS\Entries.Extra" />
     <None Include="frame\CVS\Entries.Extra.Old" />
@@ -836,7 +839,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55665</DevelopmentServerPort>
+          <DevelopmentServerPort>54017</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

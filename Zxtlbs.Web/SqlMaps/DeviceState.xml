@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="DeviceState"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  
+  <alias>
+    <typeAlias alias="DeviceState" type="Zxtlbs.Model.DeviceState, Zxtlbs.Model" />
+  </alias>
+
+  <statements>
+    <select id="GetStatusByDeviceIDs" resultClass="DeviceState" parameterClass="DeviceState">
+      select * from device_state where device_id in ('$DEVICE_ID$')
+    </select>
+    
+    <select id="GetStatusByGroupID" resultClass="DeviceState" parameterClass="DeviceInfo">
+      select * from device_state where device_id in (select device_id from device_info where belong_groupid like '$BELONG_GROUPID$%')
+    </select>
+  </statements>
+</sqlMap>

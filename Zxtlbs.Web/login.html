@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中信通位置服务系统-登录</title>
+<link href="common/common.css" rel="stylesheet" type="text/css" />
+<link href="frame/login.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="frame/jquery-1.6.2.min.js"></script>
+</head>
+<body>
+
+<div class="main">
+	<div class="bacg"><img src="frame/login/login-bg.jpg" ></div>
+	<div class="top"><img src="frame/login/logo.gif" width="61" height="55"></div>
+    <div class="lgoin-k">
+    	<h1>位置服务系统</h1>
+    	<table width="240" border="0" class="tab-pp">
+          <tr>
+            <td width="36">账号</td>
+            <td width="192"><input type="text" value="" name="" class="inp-01"></td>
+          </tr>
+          <tr>
+            <td>密码</td>
+            <td><input type="password" value="" name="" class="inp-01"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input type="checkbox" name="" class="inp-02">记住账户</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input type="button" name="" onclick="url('index.html')" class="inp-03"></td>
+          </tr>
+        </table>
+
+    </div>
+    <div class="footer">
+    	<p>&copy;2004-2012 武汉中信通网络信息有限责任公司</p>
+    </div>
+    
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).keydown(function (event) {
+        if (event.keyCode == 13) {
+            window.location = 'index.aspx';
+        }
+    }); 
+</script>

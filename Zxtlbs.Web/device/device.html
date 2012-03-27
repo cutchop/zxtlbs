@@ -321,7 +321,7 @@
     function chaxun() {
         var oTable = $('#wlist').dataTable();
         var oSettings = oTable.fnSettings();
-        oSettings.sAjaxSource = "device/device.ashx?name=" + $("#dname").val() + "&groupid=" + $("#h-group").val();
+        oSettings.sAjaxSource = "device/device.ashx?name=" + $("#dname").val() + "&groupid=" + $("#h-group-search").val();
         oTable.fnPageChange(0);
     }
     function d_detail() {

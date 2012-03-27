@@ -169,8 +169,8 @@ function initTime(){
 
 function init(){
     //module();
-	zTab();
-	zList();
+	//zTab();
+	//zList();
 	zProcess();
 	zOper();
 	zBasic();
@@ -180,13 +180,13 @@ function init(){
 	//zListWindow();
 	zForm();
 	documentClick();
-	zScroll();
-	zmesstip();
-	zWorkflow();
+	//zScroll();
+	//zmesstip();
+	//zWorkflow();
 	/*会议视图相关*/
 	//zHy();
 	//dp.SyntaxHighlighter.HighlightAll('code');
-	zShrink();
+	//zShrink();
 }
 
 function documentClick(){

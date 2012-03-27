@@ -44,19 +44,19 @@
                         <div class="loginText">伍凯</div>
                     </div>
                     <ul class="areaTools stopPropagation">
-                        <li title="系统消息" onclick="popupBody('#xtbg_wxts');">
+                        <li title="报警信息" onclick="popupBody('#xtbg_wxts');">
                             <a class="sysinfoIcon" href="#">&nbsp;</a>
                             <span class="c_num">
-                                <span><i>555</i></span>
+                                <span><i>5</i></span>
                             </span>
                         </li>
-                        <li title="email" onclick="popupBody('#lbzm-email');">
+                        <li title="短信管理" onclick="popupBody('#lbzm-email');">
                             <a class="emailIcon" href="#">&nbsp;</a>
                             <span class="c_num">
                                 <span><i>3</i></span>
                             </span>
                         </li>
-                        <li title="IM" onclick="toggle('#imDiv');toggleClass(this,'topOptionClick')"><a class="imIcon" href="#">&nbsp;</a></li>
+                        <li title="系统设置" onclick="toggle('#imDiv');toggleClass(this,'topOptionClick')"><a class="imIcon" href="#">&nbsp;</a></li>
                     </ul>
                     <ul class="areaTools">
                         <li class="topChange"><a class="cgIcon stopPropagation" onclick="toggle('#topChangeMenu')" href="#">&nbsp;</a></li>

@@ -18,7 +18,8 @@ function maxIndex(cls){
 	return num;
 }
 
-function ajaxloading(id,htmlURL,text){
+function ajaxloading(id, htmlURL, text) {
+    if (typeof (timer) != "undefined") clearTimeout(timer);
 	$('.popupBg').remove();
 	
 	var _popUplength = $('body > .popUp').length;
