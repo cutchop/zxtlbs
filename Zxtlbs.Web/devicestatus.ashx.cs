@@ -25,7 +25,7 @@ namespace Zxtlbs.Web
                 IList<DeviceState> list = Mapper.Instance().QueryForList<DeviceState>("GetStatusByDeviceIDs", ds);
                 foreach (DeviceState d in list)
                 {
-                    data.AppendFormat("[\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\"],", d.DEVICE_ID, d.LOGINTIME, d.CUR_STATUS, d.SPEED, d.DIRECTION, d.LICHENG, d.LON, d.LAT);
+                    data.AppendFormat("[\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\"],", d.DEVICE_ID, d.LOGINTIME, d.CUR_STATUS, d.SPEED, d.DIRECTION, d.LICHENG, d.LON, d.LAT, d.DEVICE_SIM);
                 }
                 if (data.Length > 0)
                 {
@@ -46,7 +46,7 @@ namespace Zxtlbs.Web
                 IList<DeviceState> list = Mapper.Instance().QueryForList<DeviceState>("GetStatusByGroupID", di);
                 foreach (DeviceState d in list)
                 {
-                    data.AppendFormat("[\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\"],", d.DEVICE_ID, d.LOGINTIME, d.CUR_STATUS, d.SPEED, d.DIRECTION, d.LICHENG, d.LON, d.LAT);
+                    data.AppendFormat("[\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\"],", d.DEVICE_ID, d.LOGINTIME, d.CUR_STATUS, d.SPEED, d.DIRECTION, d.LICHENG, d.LON, d.LAT, d.DEVICE_SIM);
                 }
                 if (data.Length > 0)
                 {

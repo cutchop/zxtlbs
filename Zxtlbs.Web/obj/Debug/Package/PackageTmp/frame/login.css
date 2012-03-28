@@ -1,0 +1,19 @@
+body,html{width:100%;height:100%;overflow:hidden;}
+
+.main{ min-height:745px; min-width:1204px; overflow:hidden;zoom:1;border:1px solid #000;}
+.top{ position: absolute; top:15px; right:15px;}
+.bacg{ width:200%; height:200%;}
+.bacg img{ width:50%; height:50%;}
+
+.lgoin-k{ background:url(login/login.png) no-repeat; width:675px; height:282px; position:absolute; left:15%; top:20%;}
+.lgoin-k h1{ width:307px; height:65px;  float:left; margin:43px 0px 0px 28px; text-indent:-3000px;}
+.inp-01{background:url(login/icon.gif) no-repeat; width:183px; height:21px; border:1px solid #999; color:#666; line-height:21px; padding-left:5px;}
+.tab-pp{  margin:96px 0px 0px 45px; float:left;}
+.tab-pp td{ padding:5px 0px; font-size:14px; color:#666;}
+.tab-pp td .a-01{ margin-left:10px; color:#666;}
+.inp-02{ margin-right:4px;}
+.inp-03{ cursor:pointer; background: url(login/icon.gif) no-repeat scroll 0px -21px; border:none; width:121px; height:25px; margin-left:20px;}
+
+
+.footer{ position:absolute; left:38%; bottom:10px; padding:20px 0px;}
+.footer p{line-height:22px; color:#fff; font-size:14px; text-align:center;}

@@ -18,6 +18,7 @@ namespace Zxtlbs.Web
                 user.USERID = "wukai";
                 user.USERNAME = "伍凯";
                 user.ORGID = "001";
+                user.ORGNAME = "中信通";
                 Session["AUser"] = user;
             }
         }

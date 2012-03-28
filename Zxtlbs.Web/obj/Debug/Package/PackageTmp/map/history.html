@@ -1,0 +1,231 @@
+﻿<div class="z-wrap">
+  <div id="z-zwgl-list-01" class="z-wrap-height">
+    <div class="z-search">
+      <div class="z-search-condition">
+        <div class="z-search-term-three">
+          <table class="z-search-box">
+            <thead>
+              <tr>
+              <td class="z-search-name">选择设备</td>
+                <td><div class="z-select-box-wrap1 z-basic-organ-wrap"><span class="z-basic-trigger z-basic-organ">
+                    <input type="text" id="t-device" readonly="readonly" class="z-basic-text z-basic-text-disable z-basic-text-gray" value="请选择" />
+                    <input type="hidden" id="h-device" value="" />
+                    <a href="javascript:void(0)" class="z-btn-trigger"></a></span>
+                    <div class="z-select-box1 z-box1" style="display:none">
+                    <div class="z-box-t"><span>&nbsp;</span></div>
+                    <div class="z-box-c">
+                        <div class="z-box-m">
+                            <div class="z-con" id="div-devicelist">
+                                <div>正在加载列表，请稍候…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="z-box-b"><span>&nbsp;</span></div>
+                    </div>
+                  </div></td>
+                <td class="z-search-name">选择日期</td>
+                <td><div class="z-basic-time-part-wrap">
+                    <div class="z-select-box-wrap1 z-basic-time-wrap"><span class="z-basic-trigger z-basic-time">
+                      <input id="datefrom" type="text" class="z-basic-text z-basic-text-disable" />
+                      <a class="z-btn-trigger" href="javascript:document.getElementById('datefrom').focus();"></a></span>
+                    </div>
+                  </div></td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="z-search-btn"> <a href="#" class="z-search-inq" onclick="chaxun()"><span>查看轨迹</span></a></div>
+      </div>
+    </div>
+    <div class="z-line"></div>
+    <div style="background:#fff;padding:10px;">
+        <div id="slider"></div>
+        <div style="height:30px;position: relative;">
+            <span id="sliderlabelMin" style="float:left;background:#fff;"><img src="common/images/pm/yy-region-tips-t.png" alt="00:00" /><br /><span id="slidertimeMin">00:00:00</span></span>
+            <span id="sliderlabel" style="float:left;text-align:center;left:0%;margin-left:-47px;position:absolute;display:none;"><img src="common/images/pm/yy-region-tips-t.png" alt="00:00:00" /><br /><span id="slidertime">06:00</span></span>
+            <span id="sliderlabelMax" style="float:right;background:#fff;text-align:right;"><img src="common/images/pm/yy-region-tips-t.png" alt="23:59:59" /><br /><span id="slidertimeMax">23:59:59</span></span>
+            <span style="clear:both;"></span>
+        </div>
+    </div>
+    <div class="z-line"></div>
+    <div id="map_canvas" style="width:100%;height:400px;"></div>
+  </div>
+</div>
+<script type="text/javascript">
+    var map, infowindow, poly, marker;
+    var dlat = 30.556, dlng = 114.327;
+    var hdata = [];
+    var slider;
+    var drawI = 0;
+    var playI = 0;
+    var timer;
+    function mapInit() {
+        var ht = $(window).height() - 70 - 5 - 20 - 112;
+        if ($("#header").attr("class") == "headerMin") {
+            ht = $(window).height() - 70 - 5 - 20 + 34 - 112;
+        } else if ($("#header").attr("class") == "headerMin headerHide") {
+            ht = $(window).height() - 5 - 5 - 20 - 112;
+        }
+        $("#map_canvas").css("height", ht + "px");
+        var myOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+        /**检测用户位置**/
+        // Try W3C Geolocation (Preferred)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                map.setCenter(initialLocation);
+            }, function () {
+                map.setCenter(new google.maps.LatLng(dlat, dlng));
+            });
+            // Try Google Gears Geolocation
+        } else if (google.gears) {
+            var geo = google.gears.factory.create('beta.geolocation');
+            geo.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.latitude, position.longitude);
+                map.setCenter(initialLocation);
+            }, function () {
+                map.setCenter(new google.maps.LatLng(dlat, dlng));
+            });
+            // Browser doesn't support Geolocation
+        } else {
+            map.setCenter(new google.maps.LatLng(dlat, dlng));
+        }
+        marker = new google.maps.Marker();
+        infowindow = new google.maps.InfoWindow();
+        poly = new google.maps.Polyline({
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        poly.setMap(map);
+        google.maps.event.addListener(marker, 'click', function (event) {
+            infowindow.open(map, marker);
+        });
+    }
+    function getContent(obj) {
+        return '<div style="font-size:14px;line-height:22px;"><div style="font-weight:bold;">'
+                    + $("#t-device").val()
+                    + '</div><div>状态:'
+                    + obj[1]
+                    + '</div><div>速度:'
+                    + obj[2]
+                    + '</div><div>方向:'
+                    + obj[3]
+                    + '</div><div>总里程:'
+                    + obj[4]
+                    + '</div><div>经纬度:'
+                    + obj[5] + '°E,' + obj[6] + '°N'
+                    + '</div><div>定位时间:'
+                    + obj[0]
+                    + '</div></div>';
+    }
+    function sildeTo(i) {
+        $("#slidertime").text(hdata[i][0]);
+        if (i == hdata.length - 1 || i == 0) {
+            $("#sliderlabel").css("display", "none");
+        } else {
+            $("#sliderlabel").css("left", (i / slider.slider("option", "max") * 100) + "%");
+            $("#sliderlabel").css("display", "");
+        }
+        var latLng = new google.maps.LatLng(hdata[i][6], hdata[i][5]);
+        marker.setPosition(latLng);
+        //map.setCenter(latLng);
+        infowindow.setContent(getContent(hdata[i]));
+        infowindow.open(map, marker);
+        while (drawI < i) {
+            drawI++;
+            poly.getPath().push(new google.maps.LatLng(hdata[drawI][6], hdata[drawI][5]));
+        }
+        playI = i;
+    }
+    function sliderInit() {
+        slider = $("#slider").slider({
+            range: "min",
+            slide: function (event, ui) {
+                sildeTo(ui.value);
+            }
+        });
+        slider.slider("value", 0);
+        slider.slider("option", "max", 0);
+        $("#datefrom").datepicker({
+            minDate: -90,
+            maxDate: 0
+        });
+    }
+    function hisplay() {
+        if (playI < hdata.length - 1) {
+            slider.slider("value", playI + 1);
+            sildeTo(playI + 1);
+        }
+        timer = setTimeout("hisplay()", 1000);
+    }
+    function chaxun() {
+        if ($("#h-device").val() == "") {
+            $.Zebra_Dialog('请选择一个设备');
+            return false;
+        }
+        //还原控件状态
+        slider.slider("value", 0);
+        slider.slider("option", "max", 0);
+        $("#slidertimeMin").text("00:00:00");
+        $("#slidertimeMax").text("23:59:59");
+        $("#sliderlabel").css("display", "none");
+        poly.setMap(null);
+        marker.setMap(null);
+        drawI = 0;
+        playI = 0;
+        clearTimeout(timer);
+        //读取历史数据
+        $.getJSON('map/history.ashx', { device_id: $("#h-device").val(), d1: $("#datefrom").val(), d2: $("#datefrom").val() }, function (data) {
+            hdata = data;
+            slider.slider("option", "max", data.length - 1);
+            if (data.length > 0) {
+                var latLng = new google.maps.LatLng(data[0][6], data[0][5]);
+                marker.setMap(map);
+                marker.setPosition(latLng);
+                poly.setMap(map);
+                poly.setPath([latLng]);
+                map.setCenter(latLng);
+                $("#slidertimeMin").text(data[0][0]);
+                $("#slidertimeMax").text(data[data.length - 1][0]);
+                hisplay(); //开始播放
+            } else {
+                $.Zebra_Dialog("这段时间内没有找到历史数据");
+                return false;
+            }
+        });
+    }
+
+    function heightchange(h) {
+        $('#map_canvas').css({ 'height': h - 112 });
+    }
+
+    $(function () {
+        mapInit(); //地图
+        sliderInit(); //slider
+        $("#datefrom").val(todaystring()); //日期选择框
+        //设备列表
+        if (_t_d_id != "" && _t_d_name != "") {
+            $("#h-device").val(_t_d_id);
+            $("#t-device").val(_t_d_name);
+            $("#t-device").removeClass('z-basic-text-gray');
+            _t_d_id = "";
+            _t_d_name = "";
+        }
+        $('#div-devicelist').load('devicelisthtml.ashx', function () {
+            zTree();
+            $('.z-basic-organ-wrap .z-tree-leaf a').click(function () {
+                var _text = $(this).text();
+                var _obj = $(this).parents('.z-basic-organ-wrap').find('.z-basic-organ .z-basic-text');
+                _obj.removeClass('z-basic-text-gray');
+                _obj.val(_text);
+                $("#h-device").val($(this).attr("id").replace("zxt-d-", ""));
+                $(this).parents('.z-select-box1').hide();
+            })
+        });
+    });
+</script>

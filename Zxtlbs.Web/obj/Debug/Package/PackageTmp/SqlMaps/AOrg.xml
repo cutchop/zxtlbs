@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="AOrg"
+xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <!--Type aliases allow you to use a shorter name for long fully qualified class names.-->
+  <alias>
+    <typeAlias alias="AOrg" type="Zxtlbs.Model.AOrg, Zxtlbs.Model" />
+  </alias>
+
+  <statements>
+    <select id="GetOrgByID" resultClass="AOrg" parameterClass="string">
+      select * from zxt_base.aorg where orgid = #orgid#
+    </select>
+    
+    <select id="GetOrgListLikeID" resultClass="AOrg" parameterClass="string">
+      select * from zxt_base.aorg where orgid like #orgid# order by orgid
+    </select>
+
+    <select id="GetOrgTotal" resultClass="int" parameterClass="AOrg">
+      select count(*) as total from aorg
+      <dynamic prepend="where">
+        <isNotEmpty prepend="and" property="ORGID">
+          orgid like '$ORGID$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="ORGNAME">
+          orgname like '%$ORGNAME$%'
+        </isNotEmpty>
+      </dynamic>
+    </select>
+    
+    <select id="GetOrgListPage" resultClass="AOrg" parameterClass="AOrg">
+      select a.*,b.orgname as parentname from
+      (select * from (select ROWNUM RN,T.* from (
+      select * from aorg
+      <dynamic prepend="where">
+        <isNotEmpty prepend="and" property="ORGID">
+          orgid like '$ORGID$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="ORGNAME">
+          orgname like '%$ORGNAME$%'
+        </isNotEmpty>
+      </dynamic>
+      <![CDATA[ 
+        order by orgid desc
+        ) T where ROWNUM<=#PageEnd#) where RN>#PageStart#) a
+        left join aorg b on a.parentid=b.orgid
+      ]]>
+    </select>
+
+    <insert id="InsertAOrg" parameterClass="AOrg">
+      insert into aorg
+      (orgid, orgname, parentid, remark)
+      values
+      ((select #PARENTID#||lpad(substr(max(orgid),length(#PARENTID#)+1)+1,3,'0') from aorg where parentid=#PARENTID#), #ORGNAME#, #PARENTID#, #REMARK#)
+    </insert>
+
+    <update id="UpdateAOrg" parameterClass="AOrg">
+      update aorg set orgname=#ORGNAME#, remark=#REMARK#
+      where orgid=#ORGID#
+    </update>
+
+    <update id="DeleteAOrg" parameterClass="string">
+      delete from aorg where orgid=#orgid#
+    </update>
+  </statements>
+</sqlMap>

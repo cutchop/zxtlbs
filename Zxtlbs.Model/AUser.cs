@@ -13,6 +13,7 @@ namespace Zxtlbs.Model
         private string _username;
         private string _adminid;
         private string _orgid;
+        private string _orgname;
         private string _password;
         private string _stamppassword;
         private decimal _userlevel;
@@ -80,6 +81,14 @@ namespace Zxtlbs.Model
         {
             set { _orgid = value; }
             get { return _orgid; }
+        }
+        /// <summary>
+        /// 机构名称
+        /// </summary>
+        public string ORGNAME
+        {
+            set { _orgname = value; }
+            get { return _orgname; }
         }
         /// <summary>
         /// 密码MD5-32位加密

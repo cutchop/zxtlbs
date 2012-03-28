@@ -10,7 +10,9 @@ namespace Zxtlbs.Model
 		{}
 		#region Model
 		private string _rw_id;
-		private string _device_id;
+        private string _device_id;
+        private string _device_name;
+        private string _device_sim;
 		private decimal? _lon;
 		private decimal? _lat;
 		private decimal? _height;
@@ -46,6 +48,22 @@ namespace Zxtlbs.Model
 			set{ _device_id=value;}
 			get{return _device_id;}
 		}
+        /// <summary>
+        /// 设备名称
+        /// </summary>
+        public string DEVICE_NAME
+        {
+            set { _device_name = value; }
+            get { return _device_name; }
+        }
+        /// <summary>
+        /// 设备SIM卡号
+        /// </summary>
+        public string DEVICE_SIM
+        {
+            set { _device_sim = value; }
+            get { return _device_sim; }
+        }
 		/// <summary>
 		/// 经度
 		/// </summary>
