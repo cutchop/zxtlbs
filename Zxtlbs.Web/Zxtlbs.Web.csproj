@@ -148,6 +148,7 @@
     <Content Include="SqlMaps\DeviceState.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SqlMaps\AUser.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,9 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.ashx.cs">
+      <DependentUpon>login.ashx</DependentUpon>
     </Compile>
     <Compile Include="map\history.ashx.cs">
       <DependentUpon>history.ashx</DependentUpon>
@@ -842,6 +846,7 @@
     <Content Include="map\history.ashx" />
     <Content Include="grouplisthtml.ashx" />
     <Content Include="setting\group.ashx" />
+    <Content Include="login.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

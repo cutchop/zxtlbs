@@ -16,7 +16,18 @@ namespace Zxtlbs.Web.report
     {
         public void ProcessRequest(HttpContext context)
         {
-            AUser user = (AUser)context.Session["AUser"];
+            AUser user = null;
+            if (context.Session["AUser"] == null)
+            {
+                user = new AUser();
+                user.USERID = context.Request.Cookies["userid"].Value;
+                user = Mapper.Instance().QueryForObject<AUser>("GetUserById", user.USERID);
+                context.Session["AUser"] = user;
+            }
+            else
+            {
+                user = (AUser)context.Session["AUser"];
+            }
             DeviceHisTrack dht = new DeviceHisTrack();
             dht.PageStart = int.Parse(context.Request["iDisplayStart"]);
             dht.PageEnd = int.Parse(context.Request["iDisplayStart"]) + int.Parse(context.Request["iDisplayLength"]);

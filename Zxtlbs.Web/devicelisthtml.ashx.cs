@@ -15,11 +15,21 @@ namespace Zxtlbs.Web
     {
         public void ProcessRequest(HttpContext context)
         {
-            //string orgid = ((AUser)context.Session["User"]).ORGID;
-            string orgid = "001";
+            AUser user = null;
+            if (context.Session["AUser"] == null)
+            {
+                user = new AUser();
+                user.USERID = context.Request.Cookies["userid"].Value;
+                user = Mapper.Instance().QueryForObject<AUser>("GetUserById", user.USERID);
+                context.Session["AUser"] = user;
+            }
+            else
+            {
+                user = (AUser)context.Session["AUser"];
+            }
 
-            IList<AOrg> listOrg = OrgChildren(orgid);
-            IList<DeviceInfo> listDevice = OrgDevices(orgid);
+            IList<AOrg> listOrg = OrgChildren(user.ORGID);
+            IList<DeviceInfo> listDevice = OrgDevices(user.ORGID);
 
             StringBuilder html = new StringBuilder();
             html.Append("<div class=\"z-tree\"><span class=\"z-tree-bg\">&nbsp;</span>");

@@ -334,10 +334,10 @@ function zBasic(){
 
 /*********** 第一套中间件表单组件 **************/
 
-function zForm(){
+function zForm() {
 	zformSingleSelect();
 	zbase();
-    zidea();
+    //zidea();
 	zTree();
 	selectbox();
 	selectboxMore();
@@ -477,60 +477,6 @@ function selectboxMore(){
 	})
 }
 
-/* 意见型 */
-function zidea(){
-    $('.z-btn-idea').click(function(){
-	    $(this).next('.z-box-idea').toggle();
-	})
-	
-	$('.z-form-textarea-idea').click(function(){
-		if($(this).val() == ''){$(this).next('.z-idea-list-wrap').css('display','block')}else{$(this).next('.z-idea-list-wrap').css('display','none')}
-	}).keyup(function(){
-		if($(this).val() == ''){$(this).next('.z-idea-list-wrap').css('display','block')}else{$(this).next('.z-idea-list-wrap').css('display','none')}
-	})
-	
-	$('.z-idea-list a').click(function(){
-	    var _text = $(this).text();
-		var _parents = $(this).parents('.z-idea-list-wrap');
-		_parents.css('display','none');
-		
-		_parents.prev().focus().val(_text+'。');
-	})
-	
-	$('.z-form-idea,.z-form').click(function(){
-	    $(this).find('.z-idea-list-wrap')
-	})
-	
-	$('.z-form-idea .z-box-idea .z-btn-blue').click(function(){
-		var _formidea = $(this).parents('.z-form-idea');
-	    var _textarea = _formidea.find('.z-form-textarea-idea');
-		var _ideabox = _formidea.find('.z-form-idea-box-ul');
-		var _idea = $(this).parents('.z-box-idea');
-		if(_textarea.val() != ''){
-			if(_formidea.hasClass('z-form-idea-add')){
-				//var _first = $(this).parents('.z-box-idea').find('z-form-idea-addli');
-				//_first.remove();    
-			}
-			var _str = '<li class="z-form-idea-addli">'+
-				'<p class="z-textarea-val z-font-hwxk f16">'+_textarea.val()+'</p>'+
-				'<p class="z-form-remarks">部门经理：<span class="z-font-hwxk f16 mr20">张则</span>2011-06-04 13:40:21</p>'+
-			'</li>'
-			    _ideabox.prepend(_str);
-			    _formidea.addClass('z-form-idea-add');
-		}
-		_idea.hide();
-	})
-	
-	$('.z-form-idea .z-box-idea .z-btn-gray').click(function(){
-		var _idea = $(this).parents('.z-box-idea');
-		_idea.hide();
-	})
-	
-	$('.z-idea-edit').click(function(){
-	     popupBody('#z-idea-editbox');
-	})
-}
-
 /* 单选下拉列表 */
 function zformSingleSelect(){
     $('select.z-form-single-select').each(function(){
@@ -588,24 +534,23 @@ function zformSingleSelect(){
 	
 }
 /* 结构树 */
-function zTree(){
+function zTree() {
     /*$('.z-tree-active').css({'background-color':'red','background-position':'0'});*/
-    $('.z-tree-li a').unbind('click');
-    $('.z-tree-li a').click(function(event){
-		var _this = $(this);
-		var _bg = _this.parents('.z-tree').find('.z-tree-bg');
-		var _top = $(this).parent().position().top;
-		_bg.css('top',_top);
-		
-		
-	    if(!_this.parent().hasClass('z-tree-leaf')&&!_this.parent().hasClass('z-tree-none')){
-			_this.toggleClass('z-tree-active');
-		    _this.parent().next().toggle();
-		}
-		event.preventDefault();
-	})
+    $('.z-tree-li a').unbind("click", zTreeClick);
+    $('.z-tree-li a').bind("click", zTreeClick);
 }
+function zTreeClick(event) {
+    var _this = $(this);
+    var _bg = _this.parents('.z-tree').find('.z-tree-bg');
+    var _top = $(this).parent().position().top;
+    _bg.css('top', _top);
 
+    if (!_this.parent().hasClass('z-tree-leaf') && !_this.parent().hasClass('z-tree-none')) {
+        _this.toggleClass('z-tree-active');
+        _this.parent().next().toggle();
+    }
+    event.preventDefault();
+}
 
 function navTree(){
     $('.nav-tree-li > h3 > a').click(function(){

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using System.Web.SessionState;
 using System.Text;
 using Zxtlbs.Model;
 using IBatisNet.DataMapper;
@@ -10,14 +11,23 @@ namespace Zxtlbs.Web
     /// <summary>
     /// 输出当前用户下的分组列表HTML
     /// </summary>
-    public class grouplisthtml : IHttpHandler
+    public class grouplisthtml : IHttpHandler, IRequiresSessionState
     {
         public void ProcessRequest(HttpContext context)
         {
-            //string orgid = ((AUser)context.Session["User"]).ORGID;
-            string orgid = "001";
-
-            IList<AOrg> listOrg = OrgChildren(orgid);
+            AUser user = null;
+            if (context.Session["AUser"] == null)
+            {
+                user = new AUser();
+                user.USERID = context.Request.Cookies["userid"].Value;
+                user = Mapper.Instance().QueryForObject<AUser>("GetUserById", user.USERID);
+                context.Session["AUser"] = user;
+            }
+            else
+            {
+                user = (AUser)context.Session["AUser"];
+            }
+            IList<AOrg> listOrg = OrgChildren(user.ORGID);
 
             StringBuilder html = new StringBuilder();
             html.Append("<div class=\"z-tree\"><span class=\"z-tree-bg\">&nbsp;</span>");
@@ -96,7 +106,7 @@ namespace Zxtlbs.Web
 
         private IList<AOrg> OrgChildren(string orgid)
         {
-            return Mapper.Instance().QueryForList<AOrg>("GetOrgListLikeID", orgid + "%");
+            return Mapper.Instance().QueryForList<AOrg>("GetOrgListLikeID", orgid);
         }
 
         private bool HasChildOrg(IList<AOrg> list, string orgid)

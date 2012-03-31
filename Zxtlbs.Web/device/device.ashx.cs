@@ -16,7 +16,18 @@ namespace Zxtlbs.Web.device
     {
         public void ProcessRequest(HttpContext context)
         {
-            AUser user = (AUser)context.Session["AUser"];
+            AUser user = null;
+            if (context.Session["AUser"] == null)
+            {
+                user = new AUser();
+                user.USERID = context.Request.Cookies["userid"].Value;
+                user = Mapper.Instance().QueryForObject<AUser>("GetUserById", user.USERID);
+                context.Session["AUser"] = user;
+            }
+            else
+            {
+                user = (AUser)context.Session["AUser"];
+            }
             context.Response.ContentType = "text/plain";
             string action = context.Request["action"];
             if (string.IsNullOrEmpty(action) || action == "q")

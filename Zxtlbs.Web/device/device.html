@@ -264,7 +264,7 @@
             "bServerSide": true,
             "sAjaxSource": "device/device.ashx",
             "sPaginationType": "full_numbers",
-            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0,10,11,12,13,14,15,16,17,18,19,20,21,22] }],
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]}],
             "fnRowCallback": function (nRow, aData, iDisplayIndex) {
                 if (jQuery.inArray(aData[0], gaiSelected) != -1) {
                     $(nRow).addClass('row_selected');
@@ -299,7 +299,8 @@
                 _obj.val(_text);
                 $("#h-group-search").val($(this).attr("id").replace("zxt-g-", ""));
                 $(this).parents('.z-select-box1').hide();
-            })
+                chaxun();
+            });
         });
 
         $('#div-grouplist-edit').load('grouplisthtml.ashx', function () {
@@ -312,7 +313,7 @@
                 _obj.val(_text);
                 $("#f-belong_groupid").val($(this).attr("id").replace("zxt-g-", ""));
                 $(this).parents('.z-select-box1').hide();
-            })
+            });
             $('#f-belong_groupname').val($('#div-grouplist-edit .z-tree-leaf:first a').text());
             $("#f-belong_groupid").val($('#div-grouplist-edit .z-tree-leaf:first a').attr("id").replace("zxt-g-", ""));
         });

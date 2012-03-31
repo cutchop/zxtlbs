@@ -5,36 +5,74 @@
 <title>中信通位置服务系统-登录</title>
 <link href="common/common.css" rel="stylesheet" type="text/css" />
 <link href="frame/login.css" rel="stylesheet" type="text/css" />
+<link href="frame/dialog/zebra_dialog.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="frame/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="frame/dialog/zebra_dialog.js"></script>
 <script type="text/javascript">
     function login() {
-        window.location = 'index.aspx';
+        var username = $("#f-username").val();
+        if (username == "") {
+            new $.Zebra_Dialog("请填写帐号", {
+                'type': 'error',
+                'buttons': false,
+                'modal': false,
+                'auto_close': 2000
+            });
+            return;
+        }
+        var password = $("#f-password").val();
+        if (password == "") {
+            new $.Zebra_Dialog("请填写密码", {
+                'type': 'error',
+                'buttons': false,
+                'modal': false,
+                'auto_close': 2000
+            });
+            return;
+        }
+        new $.Zebra_Dialog("正在验证帐号，请稍候…", {
+            'buttons': false,
+            'modal': false,
+            'auto_close': 2000
+        });
+        $.post("login.ashx?action=p", { u: username, p: password, r: $("#f-remember").attr("checked") }, function (result) {
+            if (result == "success") {
+                window.location = "index.aspx";
+            } else {
+                new $.Zebra_Dialog(result, {
+                    'type': 'error',
+                    'buttons': false,
+                    'modal': false,
+                    'auto_close': 2000
+                });
+            }
+        });
     }
 </script>
 </head>
 <body>
 
 <div class="main">
-	<div class="bacg"><img src="frame/login/login-bg.jpg" ></div>
-	<div class="top"><img src="frame/login/logo.gif" width="61" height="55"></div>
+	<div class="bacg"><img alt="" src="frame/login/login-bg.jpg" /></div>
+	<div class="top"><img alt="" src="frame/login/logo.gif" width="61" height="55" /></div>
     <div class="lgoin-k">
     	<h1>位置服务系统</h1>
     	<table width="240" border="0" class="tab-pp">
           <tr>
             <td width="36">账号</td>
-            <td width="192"><input type="text" value="" name="" class="inp-01"></td>
+            <td width="192"><input id="f-username" type="text" class="inp-01" /></td>
           </tr>
           <tr>
             <td>密码</td>
-            <td><input type="password" value="" name="" class="inp-01"></td>
+            <td><input id="f-password" type="password" class="inp-01" /></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td><input type="checkbox" name="" class="inp-02">记住账户</td>
+            <td><input type="checkbox" id="f-remember" class="inp-02" /><label for="f-remember">记住帐号</label></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td><input type="button" name="" onclick="login()" class="inp-03"></td>
+            <td><input type="button" onclick="login()" class="inp-03" /></td>
           </tr>
         </table>
 
@@ -52,5 +90,16 @@
         if (event.keyCode == 13) {
             login();
         }
-    }); 
+    });
+    $(function () {
+        $.get("login.ashx?action=g", function (result) {
+            if (result != "") {
+                $("#f-username").val(result);
+                $("#f-remember").attr("checked", "checked");
+                $("#f-password").focus();
+            } else {
+                $("#f-username").focus();
+            }
+        });
+    });
 </script>

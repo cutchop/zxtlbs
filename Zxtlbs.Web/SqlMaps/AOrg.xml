@@ -14,7 +14,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
     </select>
     
     <select id="GetOrgListLikeID" resultClass="AOrg" parameterClass="string">
-      select * from zxt_base.aorg where orgid like #orgid# order by orgid
+      select * from zxt_base.aorg where orgid like '$orgid$%' order by orgid
     </select>
 
     <select id="GetOrgTotal" resultClass="int" parameterClass="AOrg">
